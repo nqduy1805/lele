@@ -17,7 +17,25 @@ const config: Config = {
           500: '#0070F3',
           600: '#2F6FEB',
         },
+        'light-beige': '#fff9f2',
+        'mango-yellow':'#f1ae60',
+        'onyx-gray' : '#414040',
+        'light-onyx-gray':'rgba(65,64,64,.9)'
       },
+      lineHeight: {
+        '150': '1.5',
+      },
+      padding: {
+        '3vw': '3vw',
+      },
+      zIndex: {
+        '5': '5',
+      },
+      fontWeight: {
+        '300': '300',
+        '200': '200',
+      },
+      
     },
     keyframes: {
       shimmer: {

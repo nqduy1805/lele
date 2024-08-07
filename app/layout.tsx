@@ -1,5 +1,8 @@
 import '@/app/ui/global.css';
 import { inter } from '@/app/ui/fonts';
+import Navbar  from '@/app/ui/layout/navbar/index';
+import { oswald } from '@/app/ui/fonts';
+import Hero  from '@/app/ui/layout/navbar/hero';
 
 export default function RootLayout({
   children,
@@ -7,8 +10,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
-      </html>
+  <html lang="en">
+    <body className={`${oswald.className}  lowercase`}>
+        <Navbar />
+        <Hero/>
+        <main>
+          {children}
+        </main>
+    </body>
+  </html>
   );
 }
