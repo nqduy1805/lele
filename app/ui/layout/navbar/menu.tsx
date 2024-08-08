@@ -16,7 +16,7 @@ const links = [
 export default function Menu() {
   const pathname = usePathname();
     return (
-        <nav className="transition-all transform bg-light-beige flex float-right relative" >
+        <nav className="hidden lg:flex transition-all transform bg-light-beige float-right relative" >
           {links.map((link) => {
               return (
                   <Link

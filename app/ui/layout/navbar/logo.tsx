@@ -1,9 +1,22 @@
 
+import Image from 'next/image';
 
-export default function Logo() {
+export default function Logo({ screen }: { screen: string }) {
+    let screenClass: string = "";
+  if(screen == 'lg'){
+      screenClass = "hidden sm:hidden lg:flex";
+    }else{
+      screenClass = "sm:flex lg:hidden";
+
+    }
     return (
-          <a href="#" title="" className="item-center flex pt-5 pb-5 z-5">
-            <img src="https://cdn.prod.website-files.com/665078b0642719caa9abb098/6658345853cd3d4e222001f7_vitale-logo.png" loading="lazy" width="30" height="30" alt=""></img>
+          <a href="#" title="" className={` ${screenClass}  item-center  pt-5 pb-5 z-5`}>
+            <Image
+              src="/nav/vitale-logo.png"
+              width={30}
+              height={30}
+              alt="logo"
+            />
           </a>
     );
   }

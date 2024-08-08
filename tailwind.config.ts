@@ -20,7 +20,8 @@ const config: Config = {
         'light-beige': '#fff9f2',
         'mango-yellow':'#f1ae60',
         'onyx-gray' : '#414040',
-        'light-onyx-gray':'rgba(65,64,64,.9)'
+        'light-onyx-gray':'rgba(65,64,64,.9)',
+        'beige': '#e1dcc4cc',
       },
       lineHeight: {
         '150': '1.5',
@@ -35,6 +36,7 @@ const config: Config = {
         '300': '300',
         '200': '200',
       },
+      
       
     },
     keyframes: {
