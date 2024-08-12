@@ -21,7 +21,7 @@ const config: Config = {
         'mango-yellow':'#f1ae60',
         'onyx-gray' : '#414040',
         'light-onyx-gray':'rgba(65,64,64,.9)',
-        'beige': '#e1dcc4cc',
+        'beige': '#f4ede0',
         'dark-beige': '#e6dfbc',
         'white': 'white',
         'caribbean-blue': '#2b7484'

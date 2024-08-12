@@ -27,6 +27,7 @@ export default async function Page() {
                             width={700} // Chiều rộng gốc của hình ảnh
                             height={500} // Chiều cao gốc của hình ảnh
                             className="w-full h-auto" // Tailwind CSS cho width 100% và height auto
+                            
                             />
                     </div>
                     <div className="py-[10px] px-[15px] text-center">

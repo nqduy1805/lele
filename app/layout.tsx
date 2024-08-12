@@ -3,6 +3,7 @@ import { inter } from '@/app/ui/fonts';
 import Navbar  from '@/app/ui/layout/navbar/index';
 import { oswald } from '@/app/ui/fonts';
 import Hero  from '@/app/ui/layout/navbar/hero';
+import Footer  from '@/app/ui/layout/footer/index';
 
 export default function RootLayout({
   children,
@@ -17,6 +18,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <Footer/>
     </body>
   </html>
   );
