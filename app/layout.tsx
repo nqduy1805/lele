@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
   <html lang="en">
-    <body className={`${oswald.className}  lowercase`}>
+    <body className={`${oswald.className}  lowercase text-base bg-light-beige`}>
         <Navbar />
         <Hero/>
         <main>

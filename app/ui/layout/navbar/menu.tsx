@@ -12,7 +12,6 @@ const links = [
   { name: 'contact', href: '/dashboard/customers' },
 
 ];
-
 export default function Menu() {
   const pathname = usePathname();
     return (
@@ -23,13 +22,14 @@ export default function Menu() {
                     key={link.name}
                     href={link.href}
                     className={clsx(
-                      'text-mango-yellow items-center p-5 text-xl font-normal transition-colors transition-opacity duration-200 flex hover:text-onyx-gray',{
+                      'group text-mango-yellow items-center p-5 text-xl font-normal flex hover:text-onyx-gray transition-colors duration-200',{
                         'bg-sky-100 text-blue-600': pathname === link.href,
                       },
                     )}
                   >
-                  <div className={`${styles.custom} bg-mango-yellow flex`}></div>
-                  <p className="leading-150 hidden md:block">{link.name}</p>
+                     {/* ${styles.animateNavCircle}  */}
+                  <div className={`opacity-0  group-hover:opacity-1  bg-mango-yellow rounded-full w-[5px] h-[5px] mr-[5px] `}></div>
+                  <p className="leading-150 hidden md:block ">{link.name}</p>
                 </Link>
               );
             })}

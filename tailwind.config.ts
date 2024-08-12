@@ -22,6 +22,9 @@ const config: Config = {
         'onyx-gray' : '#414040',
         'light-onyx-gray':'rgba(65,64,64,.9)',
         'beige': '#e1dcc4cc',
+        'dark-beige': '#e6dfbc',
+        'white': 'white',
+        'caribbean-blue': '#2b7484'
       },
       lineHeight: {
         '150': '1.5',
