@@ -24,7 +24,8 @@ const config: Config = {
         'beige': '#f4ede0',
         'dark-beige': '#e6dfbc',
         'white': 'white',
-        'caribbean-blue': '#2b7484'
+        'caribbean-blue': '#2b7484',
+        'grey': '#b2b2b2'
       },
       lineHeight: {
         '150': '1.5',

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 export default function Card() {
+
     return (
       <div className="self-center">
         <a className="flex font-normal p-5" role="button" aria-haspopup="dialog" aria-label="Open empty cart" data-node-type="commerce-cart-open-link" href="#">
