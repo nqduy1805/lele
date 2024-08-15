@@ -44,8 +44,8 @@ export default function Footer() {
 
   return (
     <div className="bg-beige">
-    <div className="pt-[2vw] pr-[3vw] pb-[3vw] pl-[3vw] grid grid-cols-2 grid-rows-auto gap-x-[3vw] gap-y-[3vw] items-end  ">
-        <div className="self-center justify-self-start">
+    <div className="pt-[2vw] pr-[3vw] pb-[3vw] pl-[3vw] grid sm:grid-cols-1 md:grid-cols-2 grid-rows-auto gap-x-[3vw] gap-y-[3vw] items-end  ">
+        <div className="self-center sm:place-self-center md:justify-self-start text-center">
             <div className="flex justify-center item-center w-full">
             <Image
                 src="/nav/vitale-logo.png"
@@ -63,7 +63,7 @@ export default function Footer() {
             <div className="text-[1.25rem] font-light">
             organic food you can trust.
             </div>
-            <div className="flex justify-center items-start pt-5 pb-0">
+            <div className="flex justify-center items-start pt-5 pb-0 ">
                 {linkSocial.map((link) => {
                     return (
                         <Link
@@ -101,7 +101,7 @@ export default function Footer() {
                             return (
                                 <Link
                                 key={i}
-                                    className="mb-2 text-[1.25rem] font-normal transition-colors duration-200 text-mango-yellow"
+                                    className="mb-2 text-[1.25rem] font-normal transition-colors duration-200 text-mango-yellow hover:text-onyx-gray"
                                     href="/a/a"
                                 >
                                     {item.name}

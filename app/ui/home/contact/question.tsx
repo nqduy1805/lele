@@ -25,7 +25,7 @@ export default function Question({
                       },
                     )}>{question}</p>
                     <div className={clsx(
-                      " relative w-[35px] h-[35px] flex justify-center items-center",{
+                      " relative w-[35px] h-[35px] flex justify-center items-center transition-transform duration-[800ms] ",{
                         'rotate-45 ': isVisible,
                       })} >
                         <div className="w-[60%] h-[2px]  bg-mango-yellow" ></div>
@@ -33,7 +33,7 @@ export default function Question({
                     </div>
                 </div>
                 <div className={clsx(
-                      "pl-[20px] transition-opacity duration-[200ms]",{
+                      "pl-[20px] transition-opacity duration-[1ms]",{
                         'hidden': !isVisible,
                       },
                     )} >
