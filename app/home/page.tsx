@@ -1,5 +1,4 @@
 
-import Image from 'next/image';
 import Link from 'next/link';
 import ProductsTop  from '@/app/ui/product-list/top';
 import Contact  from '@/app/ui/home/contact';

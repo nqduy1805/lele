@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import styles from './style.module.css';
 
+const links = [
+    {name:"lele shop",href:"/shop"},
+    {name:"shop",href:"/category"},
+  ];
 export default function Hero() {
     return (
-    <div className="bg-beige flex flex-col justify-center lg:justify-end items-center w-full mb-[3vw] relative min-h-[40vh] md:min-h-[60vh] ">
+    <div className="bg-beige flex flex-col justify-center lg:justify-end items-center w-full md:mb-[3vw] relative min-h-[40vh] md:min-h-[60vh] ">
         <div className="relative flex flex-col justify-center items-start max-w-none z-10 ml-auto mr-auto">
             <div className="relative flex flex-col justify-center items-start w-full  pl-[3vw] pr-[3vw] pt-[0] lg:pt-[3vw] top-[0px] lg:top-[30px]">
                 <h1 className={`${styles.animateFromLeft} animate-slide-in z-5 text-light-onyx-gray relative text-center mt-5 mb-0 text-[6rem] md:text-[8rem] lg:text-[15rem] font-bold leading-none w-full`}>LeLe shop</h1>

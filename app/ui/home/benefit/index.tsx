@@ -14,7 +14,7 @@ export default function benefit() {
         <div className="p-[3vw]">
             <h2 className="text-[4rem] font-[400] mb-[10px]">why go organic?</h2>
         </div>
-        <div className="p-3vw grid auto-cols-fr grid-rows-[auto] gap-x-[30px] grid-cols-4 place-items-start place-items-center">
+        <div className="p-3vw grid auto-cols-fr grid-rows-[auto] gap-x-[30px] grid-cols-2 md:grid-cols-4  place-items-start place-items-center">
             {benefits.map((benefit, idx) => {
                     return (
                         <BenefitItem key={idx} benefit={benefit}/>

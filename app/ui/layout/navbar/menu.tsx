@@ -2,15 +2,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import styles from './style.module.css';
 
 const links = [
-  { name: 'Home', href: '/dashboard' },
+  { name: 'Home', href: '/' },
   { name: 'our story',href: '/dashboard/invoices'},
-  { name: 'shop', href: '/dashboard/customers' },
-  { name: "recipes", href: '/dashboard/customers' },
+  { name: 'shop', href: '/shop' },
+  { name: "recipes", href: '/recipes' },
   { name: 'contact', href: '/dashboard/customers' },
-
 ];
 export default function Menu() {
   const pathname = usePathname();
@@ -23,7 +21,6 @@ export default function Menu() {
                     href={link.href}
                     className={clsx(
                       'group text-mango-yellow items-center p-5 text-xl font-normal flex hover:text-onyx-gray transition-colors duration-200',{
-                        'bg-sky-100 text-blue-600': pathname === link.href,
                       },
                     )}
                   >
