@@ -48,9 +48,9 @@ export default function Footer() {
         <div className="self-center sm:place-self-center md:justify-self-start text-center">
             <div className="flex justify-center item-center w-full">
             <Image
-                src="/nav/vitale-logo.png"
-                width={30}
-                height={30}
+                src="/nav/logo.png"
+                width={50}
+                height={50}
                 alt="logo"
             />
             </div>
@@ -58,10 +58,10 @@ export default function Footer() {
                 className="text-left text-[5rem] font-bold leading-[100%] text-light-onyx-gray"
                 href="/a/a"
             >
-            vitale
+            Cô Màu
             </Link>
             <div className="text-[1.25rem] font-light">
-            organic food you can trust.
+            Sea food Phú Yên
             </div>
             <div className="flex justify-center items-start pt-5 pb-0 ">
                 {linkSocial.map((link) => {

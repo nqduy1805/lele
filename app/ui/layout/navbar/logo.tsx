@@ -10,11 +10,11 @@ export default function Logo({ screen }: { screen: string }) {
 
     }
     return (
-          <a href="#" title="" className={` ${screenClass}  item-center  pt-5 pb-5 z-5`}>
+          <a href="#" title="" className={` ${screenClass}  item-center py-[10px]`}>
             <Image
-              src="/nav/vitale-logo.png"
-              width={30}
-              height={30}
+              src="/nav/logo.png"
+              width={50}
+              height={50}
               alt="logo"
             />
           </a>

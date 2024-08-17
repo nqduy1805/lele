@@ -7,9 +7,9 @@ import Image from 'next/image';
 
 const links = [
   { name: 'Home', href: '/' },
-  { name: 'our story',href: '/dashboard/invoices'},
-  { name: 'shop', href: '/dashboard/customers' },
-  { name: "recipes", href: '/dashboard/customers' },
+  { name: 'our story',href: '/our-story'},
+  { name: 'shop', href: '/shop' },
+  { name: "recipes", href: '/recipes' },
   { name: 'contact', href: '/dashboard/customers' },
 
 ];
