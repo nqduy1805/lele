@@ -12,6 +12,7 @@ export default function RootLayout({
 }) {
   return (
   <html lang="en">
+   
     <body className={`${oswald.className}   text-base bg-light-beige font-light text-onyx-gray`}>
         <Navbar />
         <Hero/>
