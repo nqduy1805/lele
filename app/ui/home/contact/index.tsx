@@ -1,5 +1,6 @@
 'use client';
 import Question  from '@/app/ui/home/contact/question';
+import Contact  from '@/app/ui/home/contact/contact';
 
 const QA = [
     {question:'how is vitale different from other organic foods brands?',answer:"Vitale stands out for our commitment to transparency, sustainable sourcing, and exceptional quality. We prioritize ethical practices, supporting local farmers, and delivering fresh, nutritious organic products to our customers."},
@@ -10,7 +11,7 @@ const QA = [
     {question:'how can i buy in bulk?',answer:"Vitale stands out for our commitment to transparency, sustainable sourcing, and exceptional quality. We prioritize ethical practices, supporting local farmers, and delivering fresh, nutritious organic products to our customers."},
 
   ];
-export default function Contact() {
+export default function page() {
 
     return (
       <div className="grid  grid-rows-[auto] gap-x-[3vw] gap-y-[3vw] sm:grid-cols-1 lg:grid-cols-2 p-[3vw]">
@@ -21,12 +22,7 @@ export default function Contact() {
             );
         })}
        </div>
-       <div>
-        <p>want to learn more about sustainable  lifestyle choices and delicious organic recipes?</p>
-        <p>subscribe to our newsletter</p>
-            <input type="input" />
-            {/* <input type="submit"/> */}
-       </div>
+       <Contact/>
       </div>
     );
   }

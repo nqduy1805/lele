@@ -8,7 +8,7 @@ const links = [
   { name: 'our story',href: '/our-story'},
   { name: 'shop', href: '/shop' },
   { name: "recipes", href: '/recipes' },
-  { name: 'contact', href: '/dashboard/customers' },
+  { name: 'contact', href: '/contact' },
 ];
 export default function Menu() {
   const pathname = usePathname();
