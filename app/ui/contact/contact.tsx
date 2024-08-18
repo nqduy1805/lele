@@ -21,10 +21,10 @@ export default function page() {
             <div>
                 <h3 className="text-caribbean-blue font-[400] text-[1.5rem] leading-[110%] mt-[20px] mb-[10px]">contact</h3>
                 <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[15px] gap-y-[0] grid-cols-2 ">
-                {linkSocial.map((link) => {
+                {linkSocial.map((link,idx) => {
                     return (
                         <Link
-                            key={link.name}
+                            key={idx}
                             href={link.href}
                             className={clsx(
                             'text-onyx-gray flex justify-start  items-center my-[10px] font-[400]',{
@@ -48,10 +48,10 @@ export default function page() {
             <div>
                 <h3 className="text-caribbean-blue font-[400] text-[1.5rem] leading-[110%] mt-[20px] mb-[10px]">store locations</h3>
                 <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[15px] gap-y-[0] grid-cols-2 ">
-                {linkAdress.map((link) => {
+                {linkAdress.map((link,idx) => {
                     return (
                         <Link
-                            key={link.name}
+                            key={idx}
                             href={link.href}
                             className={clsx(
                             'text-onyx-gray flex justify-start  items-center my-[10px] font-[400]',{
