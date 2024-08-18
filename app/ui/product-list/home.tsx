@@ -10,7 +10,6 @@ const products = [
   ];
 export default async function Home() {
   return (
-    <main>
         <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[30px] gap-y-[30px] p-3vw grid-cols-2  sm:grid-cols-3 lg:grid-cols-5  border-b border-solid border-dark-beige">
             {products.map((product, idx) => {
             return (
@@ -18,6 +17,5 @@ export default async function Home() {
             );
             })}
         </div>
-    </main>
   );
 }
