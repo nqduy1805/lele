@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './style.module.css';
 
 const marquees = [
@@ -9,6 +11,7 @@ const marquees = [
     {text: '"my go-to place for grocery"',authorText:"Emily S. - Los Angeles, CA"},
   ];
 export default function Marquee() {
+
     return (
         <div className={`  bg-mango-yellow py-[2vw] overflow-hidden `}>
             <div className={`${styles.marquee} relative flex items-center justify-start  gap-x-[7vw]`}>

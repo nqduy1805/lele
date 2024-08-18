@@ -11,7 +11,7 @@ const QA = [
 
   ];
 export default function Contact() {
-  
+
     return (
       <div className="grid  grid-rows-[auto] gap-x-[3vw] gap-y-[3vw] sm:grid-cols-1 lg:grid-cols-2 p-[3vw]">
        <div className="">
@@ -24,7 +24,7 @@ export default function Contact() {
        <div>
         <p>want to learn more about sustainable  lifestyle choices and delicious organic recipes?</p>
         <p>subscribe to our newsletter</p>
-            {/* <input type="input" /> */}
+            <input type="input" />
             {/* <input type="submit"/> */}
        </div>
       </div>
