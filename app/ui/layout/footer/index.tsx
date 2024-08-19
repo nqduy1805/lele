@@ -5,31 +5,19 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { navLinks  } from '@/lib/placeholder-data';
 
-const footers1 = [
-    { name:"Home",href:"/home"},
-    { name:"our story",href:"/home"},
-    { name:"shop",href:"/home"},
-    { name:"recipes",href:"/home"},
-    { name:"contact",href:"/home"},
-  ];
   
   const footers2 = [
-    { name:"product categories",href:"/home"},
-    { name:"single product",href:"/home"},
-    { name:"recipe categories",href:"/home"},
-    { name:"single recipe",href:"/home"},
+    { name:"Danh mục sản phẩm",href:"/home"},
+    { name:"Sản phẩm đơn",href:"/home"},
+    { name:"Danh mục công thức",href:"/home"},
+    { name:"Công thức đơn",href:"/home"},
   ];
-  
-  const footers3 = [
-    { name:"style guide",href:"/home"},
-    { name:"licenses",href:"/home"},
-    { name:"changelog",href:"/home"},
-  ];
+
   const footers = [
-    { title:"template pages",footerList:footers1},
+    { title:"template pages",footerList:navLinks},
     { title:"e-com & cms pages",footerList:footers2},
-    { title:"resource pages",footerList:footers3},
   ];
   const linkSocial = [
     { name: "phone", href: '/dashboard/customers', icon:"/nav/social/phone-icon.svg"},
@@ -84,15 +72,11 @@ export default function Footer() {
                 })}
             </div>
         </div>
-        <div className="grid grid-cols-3 grid-rows-auto gap-4">
+        <div className="grid grid-cols-2 grid-rows-auto gap-4">
             {footers.map((footer,idx) => {
                 return (
                     <div key={idx} className={clsx(
-                        'self-start ',{
-                            'justify-self-stretch': idx==0,
-                            'justify-self-center': idx==1,
-                            'justify-self-end': idx==2,
-
+                        'self-start justify-self-center',{
                         },
                         )}>
                         <h3 className="text-caribbean-blue mt-5 mb-2.5 text-[1.5rem] font-normal leading-[110%] ">{footer.title}</h3>
@@ -117,21 +101,16 @@ export default function Footer() {
     <div className="bg-[#414040] p-[1vw] px-[3vw]">
         <div className="grid grid-rows-[auto] grid-cols-3 items-end text-light-beige">
             <p className="self-start justify-self-start">
-                <span>created by </span>
-            
-            <Link
-                    className="text-mango-yellow hover:text-[#dfe6b3]"
-                    href="/a/a"
-                >
-                zoya aqib
+                <span>Created by </span>
+            <Link 
+                className="text-mango-yellow hover:text-[#dfe6b3]"
+                href="/"
+            >
+                Cô Màu
             </Link>
             </p>
-            <p className="self-start justify-self-center">
-            copyright 2023 by vitale
-            </p>
-            <p className="self-start justify-self-end">
-            powered by webflow
-            </p>
+            <p className="self-start justify-self-center">Copyright 2024 by Cô Màu</p>
+            <p className="self-start justify-self-end">   Powered by Cô Màu       </p>
         </div>
     </div>
     </div>

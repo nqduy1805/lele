@@ -4,7 +4,7 @@ import Link from 'next/link';
 interface Product {
     href: string;
     image: string;
-    title: string;
+    name: string;
     descript: string;
 
   }
@@ -28,7 +28,7 @@ export default async function Home({
             </div>
             <div className="py-[10px] px-[15px] text-center">
             <h3 className="text-[24px] text-caribbean-blue font-normal leading-[110%] my-2.5">
-                {product.title}
+                {product.name}
             </h3>
             <p className="font-light mb-2.5">{product.descript}</p>
             </div>

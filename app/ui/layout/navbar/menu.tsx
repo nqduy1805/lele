@@ -2,19 +2,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import { navLinks  } from '@/lib/placeholder-data';
 
-const links = [
-  { name: 'Trang chủ', href: '/' },
-  { name: 'Giới thiệu',href: '/our-story'},
-  { name: 'Cửa hàng', href: '/shop' },
-  { name: "Công thức", href: '/recipes' },
-  { name: 'Liên hệ', href: '/contact' },
-];
 export default function Menu() {
   const pathname = usePathname();
     return (
         <nav className="hidden lg:flex transition-all transform bg-light-beige float-right relative" >
-          {links.map((link) => {
+          {navLinks.map((link) => {
               return (
                   <Link
                     key={link.name}

@@ -4,14 +4,8 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import styles from './style.module.css';
 import Image from 'next/image';
+import { navLinks  } from '@/lib/placeholder-data';
 
-const links = [
-    { name: 'Trang chủ', href: '/' },
-    { name: 'Giới thiệu',href: '/our-story'},
-    { name: 'Cửa hàng', href: '/shop' },
-    { name: "Công thức", href: '/recipes' },
-    { name: 'Liên hệ', href: '/contact' },
-  ];
 const linkSocial = [
     { name: "phone", href: '/dashboard/customers', icon:"/nav/social/phone-icon.svg"},
     { name: 'mail', href: '/dashboard/customers' ,icon:"/nav/social/mail-icon.png"},
@@ -26,7 +20,7 @@ export default function Menu2() {
     return (
         <div className=" w-full absolute top-full left-0 right-0 overflow-hidden">
             <nav className="bg-light-beige border-b border-onyx-gray rounded-bl-[10px] rounded-br-[10px] overflow-visible" >
-                {links.map((link) => {
+                {navLinks.map((link) => {
                 return (
                     <Link
                         key={link.name}

@@ -3,16 +3,8 @@ import CategoryItem  from '@/app/ui/shop/category/category-item';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import clsx from 'clsx';
-
-const categorys = [
-    {name:"all products",href:"/shop"},
-    {name:"Dairy & Eggs",href:"/category"},
-    {name:"Meat & Poultry",href:"/category"},
-    {name:'Grains & Legumes',href:"/category"},
-    {name:'Fruits & Vegetables',href:"/category"},
-    {name:'Snacks & Pantry',href:"/category"},
-  ];
-  export default function page() {
+import { categorys  } from '@/lib/placeholder-data';
+export default function page() {
     const [isCategoryVisible, setIsCategoryVisible] = useState(false);
 
     const toggleCategory = () => {
