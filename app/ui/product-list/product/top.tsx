@@ -26,7 +26,7 @@ export default async function Top({
           'bg-mango-yellow text-center py-[5px] px-[10px] absolute flex justify-center w-full',
           {"hidden" : hidden_sale}
         )}>
-            <span className="text-white font-[400]">on sale!</span>
+            <span className="text-white font-[400]">Giảm giá!</span>
         </div>
         <div className="w-full">
             <Image
@@ -54,7 +54,7 @@ export default async function Top({
           <span className="text-onyx-gray font-[400] mr-[5px] leading-[120%]">
             {product.priceSale ??product.price }
           </span>
-          <span className="text-gray  leading-[120%]">per 12 oz</span>
+          <span className="text-gray  leading-[120%]">/kg</span>
         </div>
         <div className="w-full mb-[15px] py-0 px-[20px]">
         <div className="flex justify-center w-full rounded-[5px] bg-mango-yellow hover:bg-onyx-gray transition-bg duration-200 leading-[1] font-[400] p-[12px]">

@@ -11,7 +11,7 @@ interface Story {
     descript: string;
 
   }
-export default async function Home({
+export default async function page({
     story,
   }: {
     story: Story;

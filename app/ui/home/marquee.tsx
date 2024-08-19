@@ -3,12 +3,12 @@
 import styles from './style.module.css';
 
 const marquees = [
-    {text: '"top-notch ingredients"',authorText:"Emily S. - Los Angeles, CA"},
-    {text: 'healthy and hassle-free',authorText:"Emily S. - Los Angeles, CA"},
-    {text: '"game-changer for organic foodies!"',authorText:"Emily S. - Los Angeles, CA"},
-    {text: '"always fresh and tasty"',authorText:"Emily S. - Los Angeles, CA"},
-    {text: '"everyone needs to try this!"',authorText:"Emily S. - Los Angeles, CA"},
-    {text: '"my go-to place for grocery"',authorText:"Emily S. - Los Angeles, CA"},
+    {text: '"Thành phần thượng hạng"',authorText:"Cô Màu"},
+    {text: '"Khỏe mạnh và trải nghiệm"',authorText:"Cô Màu"},
+    {text: '"Sản phẩm đánh bắt trực tiếp!"',authorText:"Cô Màu"},
+    {text: '"Luôn tươi và thơm ngon"',authorText:"Cô Màu"},
+    {text: '"Mọi người cần phải thử cái này!"',authorText:"Cô Màu"},
+    {text: '"Hãy mua sản phẩm của Cô Màu Phú Yên"',authorText:"Cô Màu"},
   ];
 export default function Marquee() {
 

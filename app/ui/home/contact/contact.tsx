@@ -1,8 +1,6 @@
 'use client';
 
 export default function page() {
-  
-
     return (
         <div className="bg-caribbean-blue p-[3vw] flex flex-col rounded-[10px]  justify-center" >
             <div className="text-center text-[2rem] text-light-beige mb-[20px] leading-[110%]">want to learn more about sustainable  lifestyle choices and delicious organic recipes?</div>

@@ -4,11 +4,11 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 const links = [
-  { name: 'Home', href: '/' },
-  { name: 'our story',href: '/our-story'},
-  { name: 'shop', href: '/shop' },
-  { name: "recipes", href: '/recipes' },
-  { name: 'contact', href: '/contact' },
+  { name: 'Trang chủ', href: '/' },
+  { name: 'Giới thiệu',href: '/our-story'},
+  { name: 'Cửa hàng', href: '/shop' },
+  { name: "Công thức", href: '/recipes' },
+  { name: 'Liên hệ', href: '/contact' },
 ];
 export default function Menu() {
   const pathname = usePathname();

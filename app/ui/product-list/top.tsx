@@ -1,9 +1,9 @@
 import Product  from '@/app/ui/product-list/product/top';
 
   const products2 = [
-    { price: "5.99",priceSale:"5.00",title: 'Dairy & Eggs', href:"/category/dairy-eggs",image:"/product/dairy-and-eggs-category-image.webp", descript: 'Freshly sourced from grass-fed cows and free-range hens for optimal nutrition.'},
-    { price: "5.99",title: 'Meat & Poultry', href:"/category/meat-poultry",image:"/product/meat-and-poultry-category-image.webp", descript: 'Raised humanely without antibiotics or hormones for superior taste and quality.'},
-    { price: "5.99",priceSale:"5.00",title: 'Snacks & Pantry', href:"/category/snacks-pantry-staples",image:"/product/organic-snacks-and-pantry-category-image.webp", descript: 'Tasty and perfect for healthy, convenient eating and cooking every day.'},
+    { price: "45",priceSale:"50",title: 'Mắn ruốt', href:"/category/dairy-eggs",image:"/product/5.png", descript: 'Mắm ruốt cô Màu phơi'},
+    { price: "40",title: 'Chả cá', href:"/category/meat-poultry",image:"/product/12.png", descript: 'Chả cá cô Màu nạo'},
+    { price: "47",priceSale:"52",title: 'Khô mực', href:"/category/snacks-pantry-staples",image:"/product/16.png", descript: 'Khô được cô Màu phơi'},
   ];
 
 export default async function ProductsTop() {

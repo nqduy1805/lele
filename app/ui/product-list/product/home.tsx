@@ -38,7 +38,7 @@ export default async function Home({
             className="font-[400] rounded-[5px] text-center border-2 border-mango-yellow text-mango-yellow text-center mt-0 py-2.5 px-5 text-base leading-none transition-colors duration-200 block hover:text-[#414040] hover:border-[#414040]"
             href={product.href}
             >
-            View Products
+            Xem sản phẩm
             </Link>
         </div>
     </div>

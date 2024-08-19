@@ -15,7 +15,7 @@ export default async function Page() {
         <div className="grid  grid-rows-[auto] gap-x-[0px] gap-y-[0px] border-b border-dark-beige  sm:grid-cols-1 lg:grid-cols-[1fr_2fr] ">
             <div className="p-[3vw] bg-dark-beige min-h-[80px] flex justify-center flex-col">
                 <h1 className="leading-[100%] mb-[10px] font-[400] text-onyx-gray text-[3rem] md:text-[4rem]   ">
-                    this week’s top picks
+                    Sản phẩm bán chạy nhất tuần
                 </h1>
             </div>
             <ProductsTop/>
@@ -32,7 +32,7 @@ export default async function Page() {
             </div>
             <div className="row-start-1 lg:col-start-2 p-[3vw] bg-dark-beige min-h-[80px] flex justify-center flex-col">
                 <h1 className="leading-[100%] mb-[10px] font-[400] text-onyx-gray text-[3rem] md:text-[4rem]   ">
-                    this week’s top picks
+                    Sản phẩm mới
                 </h1>
             </div>
         </div>

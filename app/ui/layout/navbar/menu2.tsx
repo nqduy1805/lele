@@ -6,13 +6,12 @@ import styles from './style.module.css';
 import Image from 'next/image';
 
 const links = [
-  { name: 'Home', href: '/' },
-  { name: 'our story',href: '/our-story'},
-  { name: 'shop', href: '/shop' },
-  { name: "recipes", href: '/recipes' },
-  { name: 'contact', href: '/contact' },
-
-];
+    { name: 'Trang chủ', href: '/' },
+    { name: 'Giới thiệu',href: '/our-story'},
+    { name: 'Cửa hàng', href: '/shop' },
+    { name: "Công thức", href: '/recipes' },
+    { name: 'Liên hệ', href: '/contact' },
+  ];
 const linkSocial = [
     { name: "phone", href: '/dashboard/customers', icon:"/nav/social/phone-icon.svg"},
     { name: 'mail', href: '/dashboard/customers' ,icon:"/nav/social/mail-icon.png"},
