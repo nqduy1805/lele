@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default async function page() {
   return (
-        <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-2  py-[3vw] px-[3vw] ">
+        <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-2  py-[3vw] px-[3vw]     border-b border-dark-beige">
            <Image
                 src='/product/organic-quinoa-pasta.webp'
                 alt="logo"

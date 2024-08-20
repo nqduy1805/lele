@@ -3,7 +3,13 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { writeFile } from "fs/promises";
+import path from "path";
+import fs from 'fs';
 
+import {
+  ProductsTable,
+} from './definitions';
 const FormSchema = z.object({
   id: z.string(),
   name: z.string({
@@ -62,10 +68,15 @@ export async function createInvoice(prevState: State, formData: FormData) {
     };
   }
       const { name, category_id, amount, price, price_sale, is_sale, descript} = validatedFields.data;
-      const amountInCents = amount * 100;
       const created_date = new Date().toISOString().split('T')[0];
       const updated_date = new Date().toISOString().split('T')[0];
-      const image_url = "/product/1.png";
+      const file = formData.get("image")as File;
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const image_url =  "/product/"+(Math.floor(Math.random() * 10))+"_"+file.name;
+      await writeFile(
+        path.join(process.cwd(), "public" + image_url),
+        buffer
+      );
       try {
         await sql`
           INSERT INTO products (name, category_id, amount, price, price_sale, is_sale, descript,created_date,updated_date,image_url)
@@ -117,8 +128,19 @@ export async function updateInvoice(
 }
   export async function deleteInvoice(id: string) {
     try {
-        await sql`DELETE FROM products WHERE id = ${id}`;
+        type Product = {
+          image_url: string;
+        };
+
+        const data = await sql<Product[]>`SELECT image_url FROM products WHERE id = ${id} LIMIT 1`;
+        const product =  data.rows;
+        console.log(product[0].image_url);
+
+        if (product.length>0 && fs.existsSync("public"+product[0].image_url)) {
+          fs.unlinkSync("public"+product[0].image_url);  
+        }
         revalidatePath('/admin/products');
+        await sql`DELETE FROM products WHERE id = ${id}`;
         return { message: 'Deleted Invoice.' };
       } catch (error) {
         return { message: 'Database Error: Failed to Delete Invoice.' };

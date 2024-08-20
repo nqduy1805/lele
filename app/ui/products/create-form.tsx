@@ -87,7 +87,8 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                 id="amount"
                 name="amount"
                 type="number"
-                step="0.01"
+                step="1"
+                min="0"
                 placeholder="Nhập số lượng"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="amount-error"
@@ -116,7 +117,8 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                 id="price"
                 name="price"
                 type="number"
-                step="0.01"
+                step="1"
+                min="0"
                 placeholder="Nhập giá sản phẩm"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="price-error"
@@ -145,7 +147,8 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                 id="price_sale"
                 name="price_sale"
                 type="number"
-                step="0.01"
+                step="1"
+                min="0"
                 placeholder="Nhập giá giảm"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="price_sale-error"
@@ -177,6 +180,7 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                   name="is_sale"
                   type="radio"
                   value="false"
+                  checked
                   className="text-white-600 h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 focus:ring-2"
                 />
                 <label
@@ -220,7 +224,30 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
           <div className="relative mt-2 rounded-md">
             <div className="relative">
               <textarea className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500" maxLength={5000} name="descript" data-name="descript" placeholder="Nhập mô tả sản phẩm"required />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
+          </div>
+
+          {/* <div id="price-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.price &&
+              state.errors.price.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
+          </div> */}
+        </div>
+        <div className="mb-4">
+          <label htmlFor="image" className="mb-2 block text-sm font-medium">
+            Nhập hình ảnh
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+            <input 
+              type="file" 
+              name="image" 
+              accept="image/*" 
+              required 
+            />
             </div>
           </div>
 

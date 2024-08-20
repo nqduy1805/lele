@@ -3,6 +3,9 @@
 const nextConfig = {
     experimental: {
       ppr: 'incremental',
+      serverActions: {
+        bodySizeLimit: '5mb'
+      },
     },
     async redirects() {
       return [
@@ -14,5 +17,4 @@ const nextConfig = {
       ]
     },
   };
-
-export default nextConfig;
+  export default nextConfig;
