@@ -189,7 +189,7 @@ export async function fetchInvoiceById(id: string) {
 }
 export async function fetchProductById(id: string) {
   try {
-    const data = await sql<ProductsForm>`
+    const data = await sql<ProductForm>`
       SELECT
       *
       FROM products

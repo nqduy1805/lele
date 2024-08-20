@@ -15,11 +15,11 @@ export default async function page() {
             <h3 className="text-onyx-gray font-[400] leading-[100%] text-[3rem] md:text-[4rem]">Sản phẩm tương tự</h3>
         </div>
         <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[3vw] gap-y-[30px] grid-cols-2 md:grid-cols-4 ">
-            {products2.map((product, idx) => {
+            {/* {products2.map((product, idx) => {
                 return (
                     <Product key={idx} product={product}/>
                 );
-            })}
+            })} */}
         </div>
 
     </div>
