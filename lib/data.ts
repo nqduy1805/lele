@@ -3,11 +3,12 @@ import {
   CustomerField,
   CustomersTableType,
   InvoiceForm,
-  InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
   ProductsTable,
-  CategoryField
+  CategoryField,
+  ProductForm
+
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -105,6 +106,48 @@ export async function fetchFilteredProducts(
     throw new Error('Failed to fetch invoices.');
   }
 }
+export async function fetchFilteredProductsTop(
+) {
+
+  try {
+    const invoices = await sql<ProductsTable>`
+      SELECT *
+      FROM products
+      ORDER BY created_date DESC
+      LIMIT 3
+    `;
+    return invoices.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoices.');
+  }
+}
+export async function fetchProductByCategoryId(id: string) {
+  try {
+    let data;
+    if(id=="all"){
+       data = await sql<ProductsTable>`
+      SELECT
+      *
+      FROM products
+       limit 9;
+    `;
+
+    }else{
+       data = await sql<ProductsTable>`
+        SELECT
+        *
+        FROM products
+        WHERE category_id = ${id} limit 9;
+      `;
+    }
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
+  }
+}
+
 
 export async function fetchProductsPages(query: string) {
   try {
@@ -144,6 +187,24 @@ export async function fetchInvoiceById(id: string) {
     throw new Error('Failed to fetch invoice.');
   }
 }
+export async function fetchProductById(id: string) {
+  try {
+    const data = await sql<ProductsForm>`
+      SELECT
+      *
+      FROM products
+      WHERE id = ${id} limit 1;
+    `;
+
+    const invoice = data.rows;
+
+    return invoice[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
+  }
+}
+
 
 export async function fetchCategorys() {
   try {
@@ -179,6 +240,7 @@ export async function fetchCustomers() {
     throw new Error('Failed to fetch all customers.');
   }
 }
+
 
 export async function fetchFilteredCustomers(query: string) {
   try {

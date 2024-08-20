@@ -187,7 +187,7 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                   htmlFor="pending"
                   className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
                 >
-                  Không giảm <ClockIcon className="h-4 w-4" />
+                  Không giảm giá <ClockIcon className="h-4 w-4" />
                 </label>
               </div>
               <div className="flex items-center">
@@ -202,7 +202,7 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
                   htmlFor="paid"
                   className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white"
                 >
-                  Giảm <CheckIcon className="h-4 w-4" />
+                  Giảm giá<CheckIcon className="h-4 w-4" />
                 </label>
               </div>
             </div>

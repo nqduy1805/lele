@@ -19,9 +19,7 @@ export default function Category({
         setIsVisible(!isVisible);
     };
     const pathname = usePathname();
-
     return (
-        <div className="">
             <Link
             href={category.href}
             className={clsx(
@@ -33,7 +31,6 @@ export default function Category({
             >
             {category.name}
             </Link>
-        </div>
     );
   }
   

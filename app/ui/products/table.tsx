@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from '@/app/ui/products/buttons';
-import productstatus from '@/app/ui/products/status';
+import Productstatus from '@/app/ui/products/status';
 import { formatDateToLocal, formatCurrency } from '@/lib/utils';
 import { fetchFilteredProducts } from '@/lib/data';
 
@@ -36,7 +36,7 @@ export default async function productsTable({
                     </div>
                     <p className="text-sm text-gray-500">{invoice.name}</p>
                   </div>
-                  {/* <productstatus status={invoice.status} /> */}
+                  <Productstatus status={invoice.is_sale} />
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
@@ -104,11 +104,11 @@ export default async function productsTable({
                     {formatDateToLocal(invoice.created_date)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {/* <productstatus status={invoice.status == ""} /> */}
+                    <Productstatus status={invoice.is_sale} />
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      {/* <UpdateInvoice id={invoice.id} /> */}
+                      <UpdateInvoice id={invoice.id} />
                       <DeleteInvoice id={invoice.id} />
                     </div>
                   </td>

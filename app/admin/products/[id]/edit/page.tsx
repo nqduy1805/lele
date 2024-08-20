@@ -1,6 +1,6 @@
-// import Form from '@/ui/products/edit-form';
+import Form from '@/app/ui/products/edit-form';
 import Breadcrumbs from '@/app/ui/products/breadcrumbs';
-import { fetchInvoiceById, fetchCustomers } from '@/lib/data';
+import { fetchProductById, fetchCategorys } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
-  const [invoice, customers] = await Promise.all([
-    fetchInvoiceById(id),
-    fetchCustomers(),
+  const [product, categorys] = await Promise.all([
+    fetchProductById(id),
+    fetchCategorys()
   ]);
 
-  if (!invoice) {
+  if (!product) {
     notFound();
   }
 
@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           },
         ]}
       />
-      {/* <Form invoice={invoice} customers={customers} /> */}
+      <Form product={product} categorys={categorys} />
     </main>
   );
 }

@@ -126,6 +126,66 @@ export async function updateInvoice(
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
 }
+export async function updateProduct(
+  id: string,
+  prevState: State,
+  formData: FormData,
+) {
+  const validatedFields = CreateInvoice.safeParse({
+    name: formData.get('name'),
+    category_id: formData.get('category_id'),
+    amount: formData.get('amount'),
+    price: formData.get('price'),
+    price_sale: formData.get('price_sale'),
+    is_sale: formData.get('is_sale'),
+    descript: formData.get('descript'),
+  });
+ 
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Update Invoice.',
+    };
+  }
+      const { name, category_id, amount, price, price_sale, is_sale, descript} = validatedFields.data;
+      const updated_date = new Date().toISOString().split('T')[0];
+      // const file = formData.get("image")as File;
+      // const buffer = Buffer.from(await file.arrayBuffer());
+      // const image_url =  "/product/"+(Math.floor(Math.random() * 9))+"_"+file.name;
+
+      // const result = await sql`SELECT image_url FROM products WHERE id = ${id} LIMIT 1`;
+      // const products = result.rows  as Product[];
+      // if (products.length > 0) {
+      //   const product = products[0]
+      //   if ( fs.existsSync("public"+product.image_url)) {
+      //     fs.unlinkSync("public"+product.image_url);  
+      //   }
+      // }
+
+      
+      // await writeFile(
+      //   path.join(process.cwd(), "public" + image_url),
+      //   buffer
+      // );
+      // type Product = {
+      //   image_url: string;
+      // };
+
+      
+
+      try {
+        await sql`
+          UPDATE products
+          SET name = ${name}, category_id = ${category_id}, amount = ${amount}, price = ${price}, amount = ${amount}, price_sale = ${price_sale}, is_sale = ${is_sale}, descript = ${descript}, updated_date = ${updated_date}
+          WHERE id = ${id}
+        `;
+      } catch (error) {
+        return { message: 'Database Error: Failed to Update Invoice.' };
+      }
+ 
+  revalidatePath('/admin/products');
+  redirect('/admin/products');
+}
     export async function deleteInvoice(id: string) {
       try {
           type Product = {

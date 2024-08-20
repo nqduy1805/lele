@@ -3,7 +3,7 @@ import CategoryItem  from '@/app/ui/shop/category/category-item';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { categorys  } from '@/lib/placeholder-data';
+import { categoryShop  } from '@/lib/placeholder-data';
 export default function page() {
     const [isCategoryVisible, setIsCategoryVisible] = useState(false);
 
@@ -22,7 +22,8 @@ export default function page() {
                 'hidden md:flex': !isCategoryVisible,
                 },
               )}>
-            {categorys.map((category, idx) => {
+                
+            {categoryShop.map((category, idx) => {
                     return (
                         <CategoryItem key={idx} category={category}/>
                     );
