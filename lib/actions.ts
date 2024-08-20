@@ -126,23 +126,24 @@ export async function updateInvoice(
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
 }
-  export async function deleteInvoice(id: string) {
-    try {
-        type Product = {
-          image_url: string;
-        };
+    export async function deleteInvoice(id: string) {
+      try {
+          type Product = {
+            image_url: string;
+          };
 
-        const data = await sql<Product[]>`SELECT image_url FROM products WHERE id = ${id} LIMIT 1`;
-        const product =  data.rows;
-        console.log(product[0].image_url);
-
-        if (product.length>0 && fs.existsSync("public"+product[0].image_url)) {
-          fs.unlinkSync("public"+product[0].image_url);  
+          const result = await sql`SELECT image_url FROM products WHERE id = ${id} LIMIT 1`;
+          const products = result.rows  as Product[];
+          if (products.length > 0) {
+            const product = products[0]
+            if ( fs.existsSync("public"+product.image_url)) {
+              fs.unlinkSync("public"+product.image_url);  
+            }
+          }
+          revalidatePath('/admin/products');
+          await sql`DELETE FROM products WHERE id = ${id}`;
+          return { message: 'Deleted Invoice.' };
+        } catch (error) {
+          return { message: 'Database Error: Failed to Delete Invoice.' };
         }
-        revalidatePath('/admin/products');
-        await sql`DELETE FROM products WHERE id = ${id}`;
-        return { message: 'Deleted Invoice.' };
-      } catch (error) {
-        return { message: 'Database Error: Failed to Delete Invoice.' };
-      }
-  }
+    }
