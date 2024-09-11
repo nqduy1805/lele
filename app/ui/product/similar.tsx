@@ -2,7 +2,7 @@ import Product  from '@/app/ui/product-list/product/top';
 import { fetchProductsSimilar } from '@/lib/api/product';
 
 
-export default async function page({id,category_id}:{id:string,category_id:String}) {
+export default async function page({id,category_id}:{id:string,category_id:string}) {
   const products = await fetchProductsSimilar(id,category_id);
 
   return (
