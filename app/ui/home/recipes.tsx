@@ -8,7 +8,7 @@ export default function Recipes() {
             <h2 className="text-beige text-[4rem] leading-[100%] font-[400] mb-[30px]">latest recipes from our kitchen</h2>
             <Link
             className="text-mango-yellow rounded-[5px] text-center border-2 border-mango-yellow px-[20px] py-[10px] leading-[1] font-[400] hover:border-light-green hover:text-light-green"
-            href="/"
+            href="/recipes"
             >
                 see all recipes
             </Link>

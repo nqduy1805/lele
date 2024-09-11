@@ -22,6 +22,36 @@ async function seedProducts() {
       );
     `;
 }
+
+async function seedRecipes() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS recipes (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      image_url VARCHAR(255) NOT NULL,
+      descript TEXT NOT NULL,
+      prep_time INT NOT NULL,
+      ingredients TEXT NOT NULL,
+      steps_to_follow TEXT NOT NULL,
+      created_date DATE,
+      updated_date DATE
+    );
+  `;
+}
+async function seedProductRecipe() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS product_recipe (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      product_id uuid NOT NULL,
+      recipe_id uuid NOT NULL,
+      FOREIGN KEY (product_id) REFERENCES products(id),
+      FOREIGN KEY (recipe_id) REFERENCES recipes(id),
+      UNIQUE (product_id, recipe_id)
+    );
+  `;
+}
 async function seedCategory() {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
     await client.sql`
@@ -150,16 +180,12 @@ export async function GET() {
   // });
   try {
 
-    
     await client.sql`BEGIN`;
     // await seedCategory();
-    await seedProducts();
-
-   
-
-
+    // await seedProducts();
+    // await seedRecipes();
+    await seedProductRecipe();
     await client.sql`COMMIT`;
-
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     await client.sql`ROLLBACK`;

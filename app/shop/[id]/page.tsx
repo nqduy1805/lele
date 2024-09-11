@@ -3,7 +3,7 @@ import Category  from '@/app/ui/shop/category';
 import Products  from '@/app/ui/product-list/shop';
 
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default  function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   return (
     <main>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from '@/app/ui/products/buttons';
 import Productstatus from '@/app/ui/products/status';
 import { formatDateToLocal, formatCurrency } from '@/lib/utils';
-import { fetchFilteredProducts } from '@/lib/data';
+import { fetchFilteredProducts } from '@/lib/api/product';
 
 export default async function productsTable({
   query,

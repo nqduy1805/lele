@@ -2,7 +2,7 @@
 
 import Logo  from '@/app/ui/layout/navbar/logo';
 import Menu  from '@/app/ui/layout/navbar/menu';
-import Card  from '@/app/ui/layout/navbar/card';
+import Card  from '@/app/ui/layout/navbar/cart';
 import MenuButton  from '@/app/ui/layout/navbar/menu-button';
 import Menu2  from '@/app/ui/layout/navbar/menu2';
 import { useState } from 'react';
@@ -14,7 +14,6 @@ export default function Navbar() {
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
-
   return (
 <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="z-50 bg-light-beige relative" >
   <div className="max-w-full mx-auto">

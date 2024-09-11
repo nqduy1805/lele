@@ -1,5 +1,5 @@
 import Product  from '@/app/ui/product-list/product/shop';
-import { fetchProductByCategoryId } from '@/lib/data';
+import { fetchProductByCategoryId } from '@/lib/api/product';
 
 
 export default async function ProductsTop({id}:{id:string}) {

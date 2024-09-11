@@ -1,5 +1,5 @@
 import Product  from '@/app/ui/product-list/product/top';
-import { fetchFilteredProductsTop } from '@/lib/data';
+import { fetchFilteredProductsTop } from '@/lib/api/product';
 
 
 

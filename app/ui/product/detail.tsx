@@ -1,7 +1,9 @@
-import Link from 'next/link';
+'use client';
 import Image from 'next/image';
 import { ProductsTable } from '@/lib/definitions';
 import {  formatCurrency } from '@/lib/utils';
+import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
+import { useDispatch } from 'react-redux';
 
 
 export default async function page({
@@ -9,6 +11,19 @@ export default async function page({
   }: {
     product: ProductsTable;
   }) {
+    const dispatch = useDispatch();
+    const addCartHandle = () => {
+      dispatch(
+        addToCart({
+          _id: product.id,
+          title: product.name,
+          quantity: 1,
+          price: product.price,
+          img: product.image_url,
+        })
+      );
+      dispatch(setTotal());
+    };
   return (
         <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-2  py-[3vw] px-[3vw]     border-b border-dark-beige">
            <Image
@@ -46,7 +61,7 @@ export default async function page({
                             </span>
                             <span className="text-gray  leading-[120%]">/kg</span>
                         </div>
-                        <div><input  className="min-w-[200px] bg-mango-yellow border border-mango-yellow border-[2px]   text-center p-[10px] leading-[1] cursor-pointer text-[#fff] rounded-[5px] w-full" type="submit" value="add to cart"/></div>
+                        <div><input  onClick={addCartHandle} className="min-w-[200px] bg-mango-yellow border border-mango-yellow border-[2px]   text-center p-[10px] leading-[1] cursor-pointer text-[#fff] rounded-[5px] w-full" type="submit" value="add to cart"/></div>
                     </form>
                 </div>
             </div>

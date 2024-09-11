@@ -122,6 +122,22 @@ export async function fetchFilteredProductsTop(
     throw new Error('Failed to fetch invoices.');
   }
 }
+export async function fetchProductsSimilar(id:string,category_id:string) {
+
+  try {
+    const data = await sql<ProductsTable>`
+        SELECT
+        *
+        FROM products
+        WHERE category_id = ${category_id} and id != ${id} limit 3;
+      `;
+        return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoices.');
+  }
+}
+
 export async function fetchProductByCategoryId(id: string) {
   try {
     let data;
