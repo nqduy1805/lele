@@ -1,4 +1,4 @@
-import { IAllProducts, IProduct } from "@/lib/interface";
+import { IAllProducts, IProduct } from"@/lib/redux/interface";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {

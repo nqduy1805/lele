@@ -1,4 +1,4 @@
-import { IUser } from "@/lib/interface";
+import { IUser } from "@/lib/redux/interface";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
