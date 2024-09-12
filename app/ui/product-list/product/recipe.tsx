@@ -34,7 +34,7 @@ export default async function Home({
             className="font-[400] rounded-[5px] text-center border-2 border-mango-yellow text-mango-yellow text-center mt-0 py-2.5 px-5 text-base leading-none transition-colors duration-200 block hover:border-light-green hover:text-light-green"
             href={"/recipes/"+recipe.id}
             >
-            View Recipe
+            Xem công thức
             </Link>
         </div>
     </div>

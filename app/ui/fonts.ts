@@ -1,4 +1,4 @@
-import { Inter , Lusitana ,Oswald} from 'next/font/google';
+import { Inter , Lusitana ,Oswald,Roboto} from 'next/font/google';
  
 export const inter = Inter({ subsets: ['latin'] });
 export const lusitana = Lusitana({
@@ -8,6 +8,12 @@ export const lusitana = Lusitana({
   
 export const oswald = Oswald({
     weight: ['200','400','700'], 
+    subsets: ['latin'],
+  });
+  
+
+  export const roboto = Roboto({
+    weight: ['100','300','400','500','700','900'], 
     subsets: ['latin'],
   });
   

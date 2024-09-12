@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Breadcrumb/>
           <Detail product={product}/>
           <Similar category_id={product.category_id} id={product.id} />
-          <Recipe/>
+          <Recipe id={product.id}/>
         </div>
         
     </main>

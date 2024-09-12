@@ -1,31 +1,24 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 
+import { CategorysList } from '@/lib/definitions/categorys';
 
-interface Category {
-  name: string;
-  href:string;
-}
 export default function Category({
     category,
   }: {
-    category: Category;
+    category: CategorysList;
   }) {
-    const [isVisible, setIsVisible] = useState(false);
-    const toggleBenefit = () => {
-        setIsVisible(!isVisible);
-    };
     const pathname = usePathname();
+    const href = `/shop/${category.id}`;
     return (
             <Link
-            href={category.href}
+            href={href}
             className={clsx(
                 'px-[20px] py-[15px] pl-[30px]  flex md:justify-center md:rounded-[10px] text-[1rem] lg:text-[1.25rem] font-[400] ',{
-                'bg-mango-yellow text-light-beige': pathname === category.href,
-                'bg-beige text-onyx-gray hover:text-mango-yellow': pathname != category.href,
+                'bg-mango-yellow text-light-beige': pathname === href,
+                'bg-beige text-onyx-gray hover:text-mango-yellow': pathname != href,
                 },
               )}
             >

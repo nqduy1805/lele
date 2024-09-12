@@ -16,6 +16,9 @@ const FormSchema = z.object({
   name: z.string({
     invalid_type_error: 'Làm ơn hãy nhập tên sản phẩm.',
   }),
+  category_id: z.string({
+    invalid_type_error: 'Làm ơn hãy chọn danh mục sản phẩm.',
+  }),
   prep_time: z.coerce
   .number()
   .gt(0, { message: 'Làm ơn hãy nhập giá giảm.' }),
@@ -80,6 +83,7 @@ export async function createItem(prevState: State, formData: FormData) {
         prep_time: formData.get('prep_time'),
         ingredients: formData.get('ingredients'),
         steps_to_follow: formData.get('steps_to_follow'),
+        category_id: formData.get('category_id'),
       });
   if (!validatedFields.success) {
     return {
@@ -87,9 +91,8 @@ export async function createItem(prevState: State, formData: FormData) {
       message: 'Missing Fields. Failed to Create Invoice.',
     };
   }
-      const { name,descript,prep_time,ingredients,steps_to_follow} = validatedFields.data;
+      const { name,category_id,descript,prep_time,ingredients,steps_to_follow} = validatedFields.data;
       const created_date = new Date().toISOString().split('T')[0];
-      const updated_date = new Date().toISOString().split('T')[0];
       const file = formData.get("image")as File;
 
       const buffer = Buffer.from(await file.arrayBuffer());
@@ -100,8 +103,8 @@ export async function createItem(prevState: State, formData: FormData) {
       );
       try {
         await sql`
-          INSERT INTO recipes (name, image_url, descript, prep_time, ingredients, steps_to_follow, created_date)
-          VALUES (${name},${image_url},${descript},${prep_time}, ${ingredients}, ${steps_to_follow},${created_date})
+          INSERT INTO recipes (name,category_id, image_url, descript, prep_time, ingredients, steps_to_follow, created_date)
+          VALUES (${name},${category_id},${image_url},${descript},${prep_time}, ${ingredients}, ${steps_to_follow},${created_date})
         `;
       } catch (error) {
         console.log(error)
@@ -113,42 +116,41 @@ export async function createItem(prevState: State, formData: FormData) {
     redirect('/admin/recipes');
 
 }
-// export async function updateProduct(
-//   id: string,
-//   prevState: State,
-//   formData: FormData,
-// ) {
-//   const validatedFields = CreateInvoice.safeParse({
-//     name: formData.get('name'),
-//     category_id: formData.get('category_id'),
-//     amount: formData.get('amount'),
-//     price: formData.get('price'),
-//     price_sale: formData.get('price_sale'),
-//     is_sale: formData.get('is_sale'),
-//     descript: formData.get('descript'),
-//   });
+export async function updateItem(
+  id: string,
+  prevState: State,
+  formData: FormData,
+) {
+  const validatedFields = CreateInvoice.safeParse({
+        name: formData.get('name'),
+        descript: formData.get('descript'),
+        prep_time: formData.get('prep_time'),
+        ingredients: formData.get('ingredients'),
+        steps_to_follow: formData.get('steps_to_follow'),
+        category_id: formData.get('category_id'),
+  });
  
-//   if (!validatedFields.success) {
-//     return {
-//       errors: validatedFields.error.flatten().fieldErrors,
-//       message: 'Missing Fields. Failed to Update Invoice.',
-//     };
-//   }
-//       const { name, category_id, amount, price, price_sale, is_sale, descript} = validatedFields.data;
-//       const updated_date = new Date().toISOString().split('T')[0];
-//       try {
-//         await sql`
-//           UPDATE products
-//           SET name = ${name}, category_id = ${category_id}, amount = ${amount}, price = ${price}, amount = ${amount}, price_sale = ${price_sale}, is_sale = ${is_sale}, descript = ${descript}, updated_date = ${updated_date}
-//           WHERE id = ${id}
-//         `;
-//       } catch (error) {
-//         return { message: 'Database Error: Failed to Update Invoice.' };
-//       }
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Update Invoice.',
+    };
+  }
+      const { name,category_id,descript,prep_time,ingredients,steps_to_follow} = validatedFields.data;
+      const updated_date = new Date().toISOString().split('T')[0];
+      try {
+        await sql`
+          UPDATE recipes
+          SET name = ${name}, category_id = ${category_id}, descript = ${descript}, prep_time = ${prep_time}, ingredients = ${ingredients}, steps_to_follow = ${steps_to_follow},  updated_date = ${updated_date}
+          WHERE id = ${id}
+        `;
+      } catch (error) {
+        return { message: 'Database Error: Failed to Update recipes.' };
+      }
  
-//   revalidatePath('/admin/products');
-//   redirect('/admin/products');
-// }
+  revalidatePath('/admin/recipes');
+  redirect('/admin/recipes');
+}
 export async function deleteItem(id: string) {
   try {
       type Product = {

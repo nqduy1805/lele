@@ -25,9 +25,9 @@ export default async function Page() {
                 <ProductsTop />
                 <Link
                     className="font-[400] rounded-[5px] text-center border-2 border-mango-yellow text-mango-yellow text-center mt-0 py-2.5 px-5 text-base leading-none transition-colors duration-200 block hover:text-[#414040] hover:border-[#414040]"
-                    href="/"
+                    href="/shop/all"
                 >
-                    see all products
+                    Xem tất cả sản phẩm
                 </Link>
             </div>
             <div className="row-start-1 lg:col-start-2 p-[3vw] bg-dark-beige min-h-[80px] flex justify-center flex-col">

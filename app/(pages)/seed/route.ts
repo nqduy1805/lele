@@ -62,6 +62,16 @@ async function seedCategory() {
       );
     `;
 }
+async function seedCategoryRecipe() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS category_recipe (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      tag VARCHAR(255) 
+    );
+  `;
+}
 // async function seedUsers() {
 //   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 //   await client.sql`
@@ -158,37 +168,76 @@ async function seedCategory() {
 
 //   return insertedRevenue;
 // }
-// const categorys = [
-//   { name: 'Mắm trong',tag:'mam-trong'},
-//   { name: 'Cá',tag:'ca'},
-//   { name: 'Mắm các loại',tag:'mam-cac-loai'},
-//   { name: 'Khô',tag:'kho'},
-//   { name: 'Chả',tag:'cha'}
-// ];
-// await Promise.all(
-//   categorys.map(async (user) => {
-//     return client.sql`
-//       INSERT INTO categorys (name, tag)
-//       VALUES (${user.name}, ${user.tag})
-//     `;
-//   }),
-// );
-export async function GET() {
-  // return Response.json({
-  //   message:
-  //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
-  // });
-  try {
+// 
+// export async function GET() {
+//   // return Response.json({
+//   //   message:
+//   //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
+//   // });
+//   try {
 
+//     await client.sql`BEGIN`;
+//     // await seedCategory();
+//     // await seedProducts();
+//     // await seedRecipes();
+//     // await seedProductRecipe();
+//     await seedCategoryRecipe();
+
+    
+//     await client.sql`COMMIT`;
+//     return Response.json({ message: 'Database seeded successfully' });
+//   } catch (error) {
+//     await client.sql`ROLLBACK`;
+//     return Response.json({ error }, { status: 500 });
+//   }
+// }
+export async function GET() {
+  
+  try {
+    type pr = {
+      id: string;
+    };
+    
     await client.sql`BEGIN`;
-    // await seedCategory();
-    // await seedProducts();
-    // await seedRecipes();
-    await seedProductRecipe();
+      // const data = await client.sql<pr>`
+      //   SELECT id
+      //   FROM products
+      // `;
+      // const data2 = await client.sql<pr>`
+      //   select id from recipes where prep_time = 5 limit 1
+      // `;
+      // await Promise.all(
+      //   data.rows.map(async (item) => {
+      //     return client.sql`
+      //       INSERT INTO product_recipe (product_id, recipe_id)
+      //       VALUES (${item.id}, ${data2.rows[0].id})
+      //       ON CONFLICT (id) DO NOTHING;
+      //     `;
+      //   }),
+      // );
+
+
+      const categorys = [
+        { name: 'Nước mắm',tag:'nuoc-mam'},
+        { name: 'Kho',tag:'kho'},
+        { name: 'Canh',tag:'Canh'},
+        { name: 'Rim',tag:'rim'},
+        ];
+        await Promise.all(
+        categorys.map(async (user) => {
+        return client.sql`
+          INSERT INTO category_recipe (name, tag)
+          VALUES (${user.name}, ${user.tag})
+        `;
+        }),
+        );
+
+   
     await client.sql`COMMIT`;
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     await client.sql`ROLLBACK`;
     return Response.json({ error }, { status: 500 });
   }
+
 }

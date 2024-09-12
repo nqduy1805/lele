@@ -109,6 +109,23 @@ const cartSlice = createSlice({
 
       state.selectCart = [];
     },
+    
+    changeItem: (state, action) => {
+      let { id, quantity } = action.payload;
+      let updatedCart = state.cart.map((product) => {
+        if (product._id === id) {
+          return {
+            ...product,
+            quantity: Number(quantity),
+          };
+        } else {
+          return product;
+        }
+      });
+
+      state.cart = updatedCart;
+      localStorage.setItem("myCart", JSON.stringify(updatedCart));
+    },
 
     incItem: (state, action) => {
       let updatedCart = state.cart.map((product) => {
@@ -135,6 +152,7 @@ const cartSlice = createSlice({
       state.cart = updatedCart;
       localStorage.setItem("myCart", JSON.stringify(updatedCart));
     },
+
 
     decItem: (state, action) => {
       const updatedCart = state.cart.map((product) => {
@@ -166,6 +184,7 @@ export const {
   removeCart,
   incItem,
   decItem,
+  changeItem,
   handleEditCartMode,
   handleSelectCart,
   handleSelectAll,

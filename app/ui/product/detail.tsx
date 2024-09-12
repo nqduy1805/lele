@@ -25,14 +25,14 @@ export default async function page({
       dispatch(setTotal());
     };
   return (
-        <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-2  py-[3vw] px-[3vw]     border-b border-dark-beige">
+        <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-1 md:grid-cols-2  py-[3vw] px-[3vw]     border-b border-dark-beige">
            <Image
                 src={product.image_url}
                 alt="logo"
                 layout="responsive"
                 width={600}
                 height={600} 
-                className="object-cover max-h-[80vh] rounded-[15px] sticky top-[75px] "
+                className="object-cover max-h-[80vh] rounded-[15px] static md:sticky top-[75px] "
             />
             <div>
                 <h1 className="text-[6rem] mb-[10px] text-left text-onyx-gray leading-[100%] font-[700]">{product.name}</h1>

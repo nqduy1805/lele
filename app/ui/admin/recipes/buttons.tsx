@@ -17,7 +17,7 @@ export function CreateItem() {
 export function UpdateItem({ id }: { id: string }) {
   return (
     <Link
-      href={`/admin/products/${id}/edit`}
+      href={`/admin/recipes/${id}/edit`}
       className="rounded-md border p-2 hover:bg-gray-100"
     >
       <PencilIcon className="w-5" />

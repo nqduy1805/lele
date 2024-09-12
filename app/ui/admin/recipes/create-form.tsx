@@ -40,7 +40,7 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
               ))}
           </div> */}
         </div>
-        {/* Invoice Amount */}
+        {/* Thời gian chế biến */}
         <div className="mb-4">
           <label htmlFor="amount" className="mb-2 block text-sm font-medium">
             Nhập thời gian
@@ -70,7 +70,6 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
               ))}
           </div> */}
         </div>
-   
 
         {/* Descript */}
         <div className="mb-4">
@@ -133,8 +132,6 @@ export default function Form({ categorys }: { categorys: CategoryField[] }) {
               ))}
           </div> */}
         </div>
-
-
 
         <div className="mb-4">
           <label htmlFor="image" className="mb-2 block text-sm font-medium">

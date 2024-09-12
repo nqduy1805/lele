@@ -1,9 +1,9 @@
-import Product  from '@/app/ui/product-list/product/recipes';
-import { fetch3Data } from '@/lib/api/recipes';
+import Recipe  from '@/app/ui/product-list/product/recipes';
+import { fetchRecipeForProduct } from '@/lib/api/recipes';
 
 
-export default async function page() {
-  const data = await fetch3Data();
+export default async function page({id}:{id:string}) {
+  const data = await fetchRecipeForProduct(id);
 
   return (
     <div className="p-3vw  border-b border-dark-beige">
@@ -13,7 +13,7 @@ export default async function page() {
         <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[3vw] gap-y-[30px] p-3vw grid-cols-2 md:grid-cols-3">
             {data.map((item, idx) => {
                 return (
-                    <Product key={idx} recipe={item}/>
+                    <Recipe key={idx} recipe={item}/>
                 );
             })}
         </div>

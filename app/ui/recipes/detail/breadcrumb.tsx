@@ -1,12 +1,13 @@
 import Link from 'next/link';
 
-const breadcrumbs = [
-    { name: 'home', href:"/"},
-    { name: 'shop', href:"/shop"},
-    { name: 'Snacks & Pantry', href:"/shop"},
-    { name: 'Organic Quinoa Pasta', href:"/shop"},
-  ];
+
 export default async function page() {
+    const breadcrumbs = [
+        { name: 'home', href:"/"},
+        { name: 'shop', href:"/shop"},
+        { name: 'Organic Quinoa Pasta', href:"/shop"},
+      ];
+
   return (
         <div className="flex gap-x-[5px] pt-[3vw] px-[3vw]">
             {breadcrumbs.map((breadcrumb, idx) => {

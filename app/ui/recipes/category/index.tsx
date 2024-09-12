@@ -1,20 +1,11 @@
 'use client';
-import CategoryItem  from '@/app/ui/shop/category/category-item';
+import CategoryItem  from '@/app/ui/recipes/category/category-item';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import clsx from 'clsx';
-
-const categorys = [
-    {name:"all recipes",href:"/recipes"},
-    {name:"Soups & Salads",href:"/category"},
-    {name:'Mains',href:"/category"},
-    {name:'Beverages',href:"/category"},
-    {name:'Snacks',href:"/category"},
-  ];
-export default function page() {
-
+import { CategorysList } from '@/lib/definitions/categorys';
+export default function page({ categorys }: { categorys: CategorysList[] }) {
   const [isCategoryVisible, setIsCategoryVisible] = useState(false);
-
   const toggleCategory = () => {
     setIsCategoryVisible(!isCategoryVisible);
   };

@@ -1,21 +1,21 @@
-import Form from '@/app/ui/products/edit-form';
+import Form from '@/app/ui/admin/recipes/edit-form';
 import Breadcrumbs from '@/app/ui/products/breadcrumbs';
-import { fetchProductById, fetchCategorys } from '@/lib/api/product';
+import { fetchRecipeById, fetchCategorys } from '@/lib/api/recipes';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Edit Invoice',
+  title: 'Edit',
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
-  const [product, categorys] = await Promise.all([
-    fetchProductById(id),
+  const [recipe, categorys] = await Promise.all([
+    fetchRecipeById(id),
     fetchCategorys()
   ]);
 
-  if (!product) {
+  if (!recipe) {
     notFound();
   }
 
@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           },
         ]}
       />
-      <Form product={product} categorys={categorys} />
+      <Form recipe={recipe} categorys={categorys} />
     </main>
   );
 }

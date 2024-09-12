@@ -2,27 +2,8 @@
 import { sql } from '@vercel/postgres';
 import {
   CategorysTable,
-  ProductForm
 } from '@/lib/definitions/categorys';
 const ITEMS_PER_PAGE = 6;
-
-export async function fetchProductById(id: string) {
-    try {
-      const data = await sql<ProductForm>`
-        SELECT
-        *
-        FROM products
-        WHERE id = ${id} limit 1;
-      `;
-  
-      const invoice = data.rows;
-  
-      return invoice[0];
-    } catch (error) {
-      console.error('Database Error:', error);
-      throw new Error('Failed to fetch invoice.');
-    }
-  }
 export async function fetchCategorysPages(query: string) {
     try {
       const count = await sql`SELECT COUNT(*)

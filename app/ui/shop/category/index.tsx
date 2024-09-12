@@ -3,8 +3,11 @@ import CategoryItem  from '@/app/ui/shop/category/category-item';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { categoryShop  } from '@/lib/placeholder-data';
-export default function page() {
+
+import { CategorysList } from '@/lib/definitions/categorys';
+
+export default  function page({ categorys }: { categorys: CategorysList[] } ) {
+
     const [isCategoryVisible, setIsCategoryVisible] = useState(false);
 
     const toggleCategory = () => {
@@ -23,7 +26,7 @@ export default function page() {
                 },
               )}>
                 
-            {categoryShop.map((category, idx) => {
+            {categorys.map((category, idx) => {
                     return (
                         <CategoryItem key={idx} category={category}/>
                     );
