@@ -20,8 +20,8 @@ export async function POST(request: Request) {
             response.headers.set('Refreshtoken', newRefreshToken); 
             return response;
         }
-        return NextResponse.json({status: 401, message: 'Refresh Token Failed' });
+        return NextResponse.json({status: 402, message: 'Refresh Token Failed' });
     } catch (error) {
-        return NextResponse.json({ status: 401, message: 'Refresh Token Failed' }, { status: 500 });
+        return NextResponse.json({ status: 403, message: 'Refresh Token Failed' }, { status: 500 });
     }
   }
