@@ -1,5 +1,4 @@
 'use client';
-import { signInApi } from '@/lib/api/auth';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import {ExclamationCircleIcon,} from '@heroicons/react/24/outline';
