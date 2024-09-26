@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import {  formatCurrency } from '@/lib/utils';
-import { setTotal } from "@/lib/redux/slice/cartSlice";
+import { addToCart } from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 import { ProductsTable } from '@/lib/definitions';
 import { addProductToCart } from '@/services/cart';
@@ -25,7 +25,7 @@ export default function Top({
         const authen = checkAuthen();
         if(authen){
           const result = await addProductToCart(cart);
-          dispatch(setTotal(1));
+          dispatch(addToCart(cart));
         }else{
           setCartAffterLogin(JSON.stringify(cart));
           clearAllGoalieToken();

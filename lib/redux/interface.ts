@@ -53,7 +53,8 @@ export interface Cart {
   price: number;
   quantity: number;
   img: string;
-  userID?: string;
+  user_id: string;
+  product_id: string;
 }
 
 export interface IUser {

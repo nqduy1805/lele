@@ -15,7 +15,7 @@ export default function Page() {
     const res = await getCarts();
     const {status ,carts }= res.data;
     if(status==200 && carts){
-    dispatch(addAllToCart(carts));
+      dispatch(addAllToCart(carts));
     }
   };
   const authen = checkAuthen();
