@@ -6,26 +6,29 @@ import {  formatCurrency } from '@/lib/utils';
 import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 import { ProductsTable } from '@/lib/definitions';
+import {  addProduct } from '@/lib/helper/help';
+import { addProductToCart } from '@/services/cart';
+import {checkAuthen} from '@/lib/helper/checkAuthen';
+import { setCartAffterLogin } from '@/lib/model/local-cache'
+import {  useRouter } from 'next/navigation';
 
 export default function Top({
     product,
   }: {
     product: ProductsTable;
   }) {
-
     const dispatch = useDispatch();
+    const { push } = useRouter()
 
-     const addCartHandle =() => {
-      dispatch(
-        addToCart({
-          _id: product.id,
-          title: product.name,
-          quantity: 1,
-          price: product.price,
-          img: product.image_url,
-        })
-      );
-      dispatch(setTotal());
+     const addCartHandle =async () => {
+        const cart = { product_id:product.id,quantity:1}
+        const authen = checkAuthen();
+        if(authen){
+          const result = await addProductToCart(cart);
+        }else{
+          setCartAffterLogin(JSON.stringify(cart));
+          push('/signin');
+        }
     };
 
     let hidden_sale = product.price_sale ? false : true; 

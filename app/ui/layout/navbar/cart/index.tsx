@@ -1,17 +1,28 @@
 import Image from 'next/image';
 import {  useAppDispatch,useAppSelector } from "@/lib/redux/hooks";
 import React, { useEffect } from "react";
-import { setTotal } from "@/lib/redux/slice/cartSlice";
+import { setTotal ,addAllToCart} from "@/lib/redux/slice/cartSlice";
 import Cart  from '@/app/ui/layout/navbar/cart/cart';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { getCarts } from '@/lib/api/carts';
+import {checkAuthen} from '@/lib/helper/checkAuthen';
 
 export default function Page() {
   const dispatch = useAppDispatch();
   const { totalQuantity } = useAppSelector((state) => state.cart);
+  const loadProducts = async () => {
+      const data = await getCarts();
+      dispatch(addAllToCart(data));
+  };
+  const authen = checkAuthen();
+
   useEffect(() => {
-    dispatch(setTotal());
-  }, [dispatch]);
+    if(authen){
+      loadProducts();
+      dispatch(setTotal());
+    }
+  }, [authen]);
   const [isVisible, setIsVisible] = useState(false);
   const toggleCart = () => {
     setIsVisible(!isVisible);

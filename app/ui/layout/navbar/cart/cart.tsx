@@ -13,7 +13,7 @@ export default  function Page({ onClick }: MenuButtonProps) {
     cart,
     totalPrice
   } = useAppSelector((state) => state.cart);
-    
+  
   return (
     <main>
         <div className="flex flex-col justify-center items-center z-[1001] bg-[#000c] fixed inset-0  ">
