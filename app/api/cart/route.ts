@@ -9,9 +9,8 @@ export const POST = handler(async (request: requestCustom) =>{
     const data = await request.json();
     const {id:user_id} = request.authen;
     const {product_id, quantity} = data;
-
     await sql.query(
-        'INSERT INTO carts (user_id, product_id, quantity) VALUES ($1, $2, $3)',
+        'INSERT INTO carts (user_id, product_id, quantity) VALUES ($1, $2, $3) ON CONFLICT (user_id,product_id)  DO UPDATE SET quantity = carts.quantity + EXCLUDED.quantity',
         [user_id, product_id, quantity]
     );
     return NextResponse.json( { status: 200 });
