@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { ProductsTable } from '@/lib/definitions';
 import {  formatCurrency } from '@/lib/utils';
-import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
+import { addToCart} from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 
 
@@ -22,14 +22,12 @@ export default async function page({
           img: product.image_url,
         })
       );
-      dispatch(setTotal());
     };
   return (
         <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[45px] grid-cols-1 md:grid-cols-2  py-[3vw] px-[3vw]     border-b border-dark-beige">
            <Image
                 src={product.image_url}
                 alt="logo"
-                layout="responsive"
                 width={600}
                 height={600} 
                 className="object-cover max-h-[80vh] rounded-[15px] static md:sticky top-[75px] "

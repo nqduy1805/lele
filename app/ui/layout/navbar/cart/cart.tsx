@@ -1,19 +1,38 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import {  useAppSelector } from "@/lib/redux/hooks";
 import CartItem  from '@/app/ui/layout/navbar/cart/cart-item';
 import {  formatCurrency } from '@/lib/utils';
+import React, { useEffect ,useState} from "react";
+import {getCartsDetail} from '@/services/cart';
+import {checkAuthen} from '@/lib/helper/checkAuthen';
 
 interface MenuButtonProps {
     onClick: () => void;
   }
 export default  function Page({ onClick }: MenuButtonProps) {
-    const {
-    cart,
-    totalPrice
-  } = useAppSelector((state) => state.cart);
-  
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const loadCarts = async () => {
+    const res = await getCartsDetail();
+    const {status ,carts }= res.data;
+    if(status==200 && carts){
+        setCart(carts);
+        const totalPriceCall: number = carts.reduce((accumulator:number, item:{price:number}) => {
+            return accumulator + item.price;
+        }, 0);
+        setTotalPrice(totalPriceCall);
+
+    }
+  };
+
+  const  authen = checkAuthen();
+  useEffect(() => {
+    if(authen){
+      loadCarts();
+    }
+  }, [authen]);
   return (
     <main>
         <div className="flex flex-col justify-center items-center z-[1001] bg-[#000c] fixed inset-0  ">
@@ -28,7 +47,7 @@ export default  function Page({ onClick }: MenuButtonProps) {
                     <CartItem key={idx} cart={item} />
                  );
                 })}
-                </div>
+                </div> 
                 
                 <div className="border-t border-gray-300 flex-col flex-none p-4 px-6 pb-6 flex">
                     <div className="flex justify-between mb-[16px]">

@@ -16,7 +16,6 @@ export default async function Home({
             <Image
                 src={recipe.image_url}
                 alt="logo"
-                layout="responsive"
                 width={700}
                 height={500} 
                 className="w-full h-auto"

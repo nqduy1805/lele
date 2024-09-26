@@ -6,6 +6,4 @@ export const formatCurrency = (amount: number) => {
   });
 };
 
-export const addProduct = () => {
-  };
-  
+

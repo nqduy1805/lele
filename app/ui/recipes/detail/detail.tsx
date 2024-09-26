@@ -17,7 +17,6 @@ export default async function page({
            <Image
                 src={item.image_url}
                 alt="logo"
-                layout="responsive"
                 width={600}
                 height={600} 
                 className="object-cover max-h-[80vh] rounded-[15px] static md:sticky top-[75px] "

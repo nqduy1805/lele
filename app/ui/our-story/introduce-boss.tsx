@@ -13,7 +13,6 @@ export default function page() {
                     <Image
                             src="/boss/found2.webp"
                             alt="logo"
-                            layout="responsive"
                             width={402} 
                             height={402}
                             className="w-full h-auto"
@@ -30,7 +29,6 @@ export default function page() {
                         <Image
                             src="/boss/found1.webp"
                             alt="logo"
-                            layout="responsive"
                             width={402} 
                             height={402}
                             className="w-full h-auto"

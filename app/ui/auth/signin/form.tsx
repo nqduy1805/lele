@@ -2,22 +2,22 @@
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import {ExclamationCircleIcon,} from '@heroicons/react/24/outline';
-import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
 import { signin } from '@/services/auth';
 import { useDispatch } from 'react-redux';
 import {checkProtectPage} from '@/lib/helper/checkAuthen';
-import { getRecentVisit } from '@/lib/model/local-cache'
+import { getRecentVisit,getCartAffterLogin } from '@/lib/model/local-cache'
 import { setFixLoading }  from '@/components/Loading'
 import {  saveGoalieToken,saveGoalieRefreshToken} from '@/lib/model/save-jwt'
+import { addProductToCart } from '@/services/cart';
 
 
 export default function page() {
       checkProtectPage();
-      const dispatch = useDispatch();
       const { push } = useRouter()
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');
       const [error, setError] = useState('');
+      const dispatch = useDispatch();
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,21 +25,24 @@ export default function page() {
           email:username,
           password:password,
         };
+        
         signin(user).then(res => {
           try {
             const {data} = res;
 
             if(data.status==200){
               const {headers} = res;
-              const authorization = headers.authorization
+              const authorization = headers.authorization;
               if (authorization ) {
                 saveGoalieToken(authorization)
-                saveGoalieRefreshToken(headers.refreshtoken)
+                saveGoalieRefreshToken(headers.refreshtoken);
               }
-              const recentVisit = getRecentVisit('1')
+              const recentVisit = getRecentVisit('1');
               setFixLoading(true, {
                 title: 'Redirecting to main screen ...'
               })
+              const cart = getCartAffterLogin();
+              addProductToCart(cart);
               if (recentVisit) {
                 push(recentVisit)
               } else {
@@ -62,24 +65,7 @@ export default function page() {
         .finally(() => {
           // setLoading(false)
         });
-        // if (result.status) {
-        //   // const productAdAfterLogin = localStorage.getItem("productAdAfterLogin");
-        //   // if(productAdAfterLogin){
-        //   //   const productAdd = JSON.parse(productAdAfterLogin!);
-        //   //   dispatch(
-        //   //     addToCart(productAdd)
-        //   //   );
-        //   //   dispatch(setTotal());
-        //   //   const redirectAfterLogin = localStorage.getItem("redirectAfterLogin") || '/home';
-        //   //   localStorage.removeItem('productAdAfterLogin');
-        //   //   localStorage.removeItem('redirectAfterLogin');
-        //   //   router.push(redirectAfterLogin);
-        //   // }
-        //   // localStorage.removeItem('redirectAfterLogin');
-        //   router.push('/home');
-        // } else {
-        //     setError(result?.message+"");
-        // }
+        
       };
     return (
         <form  onSubmit={handleSubmit}>

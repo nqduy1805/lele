@@ -1,21 +1,17 @@
 
 import { NextResponse } from 'next/server';
-import { sign } from 'jsonwebtoken';
 import { extractToken } from '@/lib/model/jwt';
 import { JWTPayload } from '@/lib/definitions/auth';
 import { requestCustom } from '@/lib/definitions/auth';
 
 const middleware = async (request: requestCustom) => {
-    const authorization = request.headers.get('authorization') as string;
 
     try {
+        const authorization = request.headers.get('authorization') as string;
         const validToken = extractToken(authorization);
         if (validToken) {
           const { id, email, name } = validToken as JWTPayload;
-          request.authen = { id, email, name };
-          // make sure that all tokens cleard
-        //   request.setHeader('Authorization', '');
-        //   request.setHeader('RefreshToken', '');
+          request.authen = { id, email, name }; 
           return true;
         }
       } catch (err) {
@@ -39,6 +35,8 @@ export const handler = (api:Function) =>
     if (result) return result
     if (result instanceof NextResponse) {
         return result;
-      }
-    return NextResponse.json({ message: 'Default Response' }, { status: 200 });
+    }
+    const response = NextResponse.json({ message: 'Default Response' }, { status: 200 });
+    response.headers.set('Authorization', "");
+    return response;
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {  getGoalieRefreshToken,getGoalieToken,saveGoalieToken,saveGoalieRefreshToken} from '@/lib/model/save-jwt'
 import { error } from 'console'
+import { clearAllGoalieToken } from '@/lib/model/save-jwt'
 
 
 const instance = axios.create({
@@ -8,7 +9,7 @@ const instance = axios.create({
   })
   
   instance.interceptors.request.use(async (config)=>{
-    if(config?.url && (config?.url?.indexOf('/signin') >= 0 ||config?.url?.indexOf('/refreshtoken') >= 0 )){
+    if(config?.url && (config?.url?.indexOf('/signin') >= 0 )){
       return  config;
     }
     const authorization = getGoalieToken();
@@ -24,11 +25,11 @@ const instance = axios.create({
         return  response;
      }
      const {status,message}  = response.data;
-     console.log(status);
      if(status && status ==401){
        if(message && message=="Unauthorized"){
           const refreshToken = getGoalieRefreshToken() as string;
           if(!refreshToken){
+
             window.location.href = '/signin';
           }
           const {headers} = await getRefreshToken(refreshToken);
@@ -39,7 +40,8 @@ const instance = axios.create({
             config.headers.setAuthorization(authorization)
             return instance(config);
           }else{
-            window.location.href = '/signin'
+            // clearAllGoalieToken();
+            // window.location.href = '/signin'
           }
        }
      }
@@ -51,8 +53,8 @@ const instance = axios.create({
    }
  )
  async function getRefreshToken(refreshToken:string){
-  return (await instance.post('api/auth/refreshtoken',{
-    params: refreshToken
+  return (await instance.post('/api/auth/refreshtoken',{
+     refreshToken
   }))
  }
   

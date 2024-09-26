@@ -2,15 +2,15 @@
 
 import Image from 'next/image';
 import {  formatCurrency } from '@/lib/utils';
-import { removeCart,setTotal,changeItem } from "@/lib/redux/slice/cartSlice";
+import { removeCart,changeItem } from "@/lib/redux/slice/cartSlice";
 import { useAppDispatch,  } from "@/lib/redux/hooks";
 
 interface Cart {
-    title: string;
-    img:string;
+    name: string;
+    image_url:string;
     quantity:number;
     price:number;
-    _id:string;
+    id:string;
 }
 export default function page({
     cart,
@@ -23,21 +23,19 @@ export default function page({
         <div  className="py-[12px] grid grid-cols-[1fr_3fr_1fr] grid-rows-auto grid-flow-col gap-0 items-end  ">
             <div className="pr-[6px]">
                 <Image
-                src={cart.img}
+                src={cart.image_url}
                 alt="logo"
                 width={80} 
                 height={80}
-                layout="responsive"
                 className="w-full h-auto rounded-[5px]" 
             />
             </div>
             
             <div className="mx-[16px]">
-                <h3 className="text-[24px] text-caribbean-blue font-normal leading-[110%] my-2.5">{cart.title}</h3>
+                <h3 className="text-[24px] text-caribbean-blue font-normal leading-[110%] my-2.5">{cart.name}</h3>
                 <p className="text-onyx-gray font-[400] leading-[120%]">{formatCurrency(cart.price)}</p>
                 <p onClick={() => {
-                        dispatch(removeCart(cart._id));
-                        dispatch(setTotal());
+                        // dispatch(removeCart(cart._id));
                       }} className="cursor-pointer text-[#b2b2b2] text-[.8em] font-[300]">remove product</p>
             </div>
             <input
@@ -49,8 +47,7 @@ export default function page({
                   if(Number(e.target.value)<=0){
                     e.target.value='1';
                   }
-                    dispatch(changeItem({id:cart._id,quantity:e.target.value}));
-                    dispatch(setTotal());
+                    // dispatch(changeItem({id:cart._id,quantity:e.target.value}));
                   }}
                 step="1"
                 min={1}

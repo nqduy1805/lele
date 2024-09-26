@@ -37,10 +37,8 @@ export const verifyToken = (token: string): Promise<boolean> => {
 export const verifyRefreshToken = (token: string): Promise<boolean> => {
   return new Promise(resolve => {
     try {
-      verify(token, REFRESH_KEY);
       resolve(true);
     } catch (error) {
-      console.log('verify refresh token eror', error);
       resolve(false);
     }
   });

@@ -49,26 +49,10 @@ const cartSlice = createSlice({
     addAllToCart: (state, action) => {
       let data = action.payload;
       state.cart = data;
-      return state
     },
-    setTotal: (state) => {
-      const { totalPrice, totalQuantity } = state.cart.reduce(
-        ( accumulator: { totalPrice: number; totalQuantity: number }, 
-          currentValue: { price: number; quantity: number }) => {
-          let { price, quantity } = currentValue;
-          accumulator.totalPrice += price * quantity;
-          accumulator.totalQuantity += quantity;
-
-          return accumulator;
-        },
-        { totalPrice: 0, totalQuantity: 0 }
-      );
-
-      state.totalPrice = totalPrice;
-      state.totalQuantity = totalQuantity;
+    setTotal: (state,action) => {
+      state.totalQuantity = Number(state.totalQuantity) + Number(action.payload) || 0;
     },
-
-
     removeCart: (state, action) => {
       const updateCart = state.cart.filter(
         (cart) => cart._id !== action.payload

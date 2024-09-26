@@ -30,7 +30,7 @@ export enum LCK {
     }
   }
 
-  export const getCartAffterLogin = (uid: string) => {
+  export const getCartAffterLogin = () => {
     try {
       let value = localStorage.getItem(LCK.PRODUCT_ADD) as string;
       localStorage.removeItem(LCK.PRODUCT_ADD);

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {  formatCurrency } from '@/lib/utils';
-import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
+import { addToCart } from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 import { ProductsTable } from '@/lib/definitions';
 
@@ -24,7 +24,6 @@ export default function Top({
           img: product.image_url,
         })
       );
-      dispatch(setTotal());
     };
 
     let hidden_sale = product.price_sale ? false : true; 
@@ -35,7 +34,6 @@ export default function Top({
             <Image
             src={product.image_url}
             alt="logo"
-            layout="responsive" // Hoặc "intrinsic"
             width={700} // Chiều rộng gốc của hình ảnh
             height={500} // Chiều cao gốc của hình ảnh
             className="w-full h-auto" // Tailwind CSS cho width 100% và height auto

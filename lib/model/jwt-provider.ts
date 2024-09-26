@@ -19,7 +19,7 @@ export default class JwtProvider {
 
     console.time('gen-refresh-token')
     const refreshToken = generateRefreshToken({
-      email: this.data.email
+      id: this.data.id
     })
 
     console.timeEnd('gen-refresh-token')

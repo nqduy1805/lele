@@ -16,7 +16,7 @@ export default function Hero() {
             </div>
         </div>
         <div className="absolute top-0 bottom-0 left-0 right-0 overflow-hidden bg-blue-500">
-            <Image className="object-cover object-center w-full h-full" src="/nav/hero-section-home-1.webp" alt="Bowls of organic salads placed on a white table" sizes="100vw" layout="fill"/>
+            <Image className="object-cover object-center w-full h-full" src="/nav/hero-section-home-1.webp" alt="Bowls of organic salads placed on a white table" sizes="100vw" width={20} height={20}/>
             <div className="bg-[#c0d5debf] absolute inset-0"></div> 
         </div>
     </div>

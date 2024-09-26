@@ -34,15 +34,14 @@ async function checkUser(data: userSigin): Promise<User |null| undefined> {
 export async function POST(request: Request) {
     try {
         const data = await request.json();
-
         const user =  await checkUser(data);
         if(user){
-            const jwtProvider = new JwtProvider(user);
+            const jwtProvider = new JwtProvider({id:user.id,name:user.name,email:user.email});
             const { token, refreshToken } = jwtProvider.generate()
             const response = NextResponse.json({ status: 200 ,message: 'Success'});
             response.headers.set('Authorization', token);
             response.headers.set('Refreshtoken', refreshToken); 
-            return response;     
+            return response;
         }else{
             return NextResponse.json({ status: 401 ,message: 'Tên đăng nhập hoặc mật khẩu không đúng'});
         }

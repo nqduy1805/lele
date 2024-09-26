@@ -3,14 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import {  formatCurrency } from '@/lib/utils';
-import { addToCart, setTotal } from "@/lib/redux/slice/cartSlice";
+import { setTotal } from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 import { ProductsTable } from '@/lib/definitions';
-import {  addProduct } from '@/lib/helper/help';
 import { addProductToCart } from '@/services/cart';
 import {checkAuthen} from '@/lib/helper/checkAuthen';
 import { setCartAffterLogin } from '@/lib/model/local-cache'
 import {  useRouter } from 'next/navigation';
+import { clearAllGoalieToken } from '@/lib/model/save-jwt'
 
 export default function Top({
     product,
@@ -25,8 +25,10 @@ export default function Top({
         const authen = checkAuthen();
         if(authen){
           const result = await addProductToCart(cart);
+          dispatch(setTotal(1));
         }else{
           setCartAffterLogin(JSON.stringify(cart));
+          clearAllGoalieToken();
           push('/signin');
         }
     };
@@ -46,7 +48,6 @@ export default function Top({
             <Image
             src={product.image_url}
             alt="logo"
-            layout="responsive" // Hoặc "intrinsic"
             width={700} // Chiều rộng gốc của hình ảnh
             height={500} // Chiều cao gốc của hình ảnh
             className="w-full h-auto" // Tailwind CSS cho width 100% và height auto

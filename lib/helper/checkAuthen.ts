@@ -6,6 +6,7 @@ export function checkAuthen() {
     const refreshToken = getGoalieRefreshToken();
     return (refreshToken && token);
 }
+import { clearAllGoalieToken } from '@/lib/model/save-jwt'
 export function checkProtectPage() {
   const publicPages = ['/signin', '/signup'];
 
@@ -16,6 +17,7 @@ export function checkProtectPage() {
     const isInsidePublicPages = publicPages.some(p => p === pathname)
     const authen = checkAuthen();
     if (!authen && !isInsidePublicPages) {
+      clearAllGoalieToken();
       return push('/signin')
     }
 
