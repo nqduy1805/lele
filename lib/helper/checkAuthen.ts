@@ -8,7 +8,7 @@ export function checkAuthen() {
 }
 import { clearAllGoalieToken } from '@/lib/model/save-jwt'
 export function checkProtectPage() {
-  const publicPages = ['/signin', '/signup'];
+  const publicPages = ['/signin', '/signup','/signup/infor'];
 
   const pathname = usePathname()
   const { push } = useRouter()

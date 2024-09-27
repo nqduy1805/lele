@@ -6,7 +6,8 @@ export type JWTPayload = {
 
   export type userSigin = {
     email: string;
-    password:string
+    password:string;
+    provider:string;
   };
 
   
