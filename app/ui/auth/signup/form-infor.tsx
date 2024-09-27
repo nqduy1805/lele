@@ -22,6 +22,7 @@ export default function page() {
         const user =  {
           email:username,
           password:password,
+          provider:'google'
         };
         
         signin(user).then(res => {
