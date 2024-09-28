@@ -1,5 +1,6 @@
 import { Cart } from "@/lib/redux/interface";
 import { createSlice } from "@reduxjs/toolkit";
+import {deleteCart,updateCart} from '@/services/cart';
 
 interface InitialState {
   cart: Cart[];
@@ -53,12 +54,12 @@ const cartSlice = createSlice({
     },
     removeCart: (state, action) => {
       const updateCart = state.cart.filter(
-        (cart) => cart._id !== action.payload
+        (cart) => cart.id !== action.payload
       );
-
+      deleteCart(action.payload);
       state.cart = updateCart;
 
-      localStorage.setItem("myCart", JSON.stringify(state.cart));
+      // localStorage.setItem("myCart", JSON.stringify(state.cart));
     },
 
     handleEditCartMode: (state, action) => {
@@ -88,7 +89,7 @@ const cartSlice = createSlice({
 
     removeSelectedCart: (state) => {
       const filteredCart = state.cart.filter(
-        (cart) => !state.selectCart.includes(cart._id)
+        (cart) => !state.selectCart.includes(cart.id)
       );
 
       state.cart = filteredCart;
@@ -100,7 +101,7 @@ const cartSlice = createSlice({
     changeItem: (state, action) => {
       let { id, quantity } = action.payload;
       let updatedCart = state.cart.map((product) => {
-        if (product._id === id) {
+        if (product.id === id) {
           return {
             ...product,
             quantity: Number(quantity),
@@ -109,14 +110,15 @@ const cartSlice = createSlice({
           return product;
         }
       });
+      updateCart(id, quantity);
 
       state.cart = updatedCart;
-      localStorage.setItem("myCart", JSON.stringify(updatedCart));
+      // localStorage.setItem("myCart", JSON.stringify(updatedCart));
     },
 
     incItem: (state, action) => {
       let updatedCart = state.cart.map((product) => {
-        if (product._id === action.payload) {
+        if (product.id === action.payload) {
           let quantity = product.quantity + 1;
           let midPrice = 20000;
 
@@ -139,11 +141,9 @@ const cartSlice = createSlice({
       state.cart = updatedCart;
       localStorage.setItem("myCart", JSON.stringify(updatedCart));
     },
-
-
     decItem: (state, action) => {
       const updatedCart = state.cart.map((product) => {
-        if (product._id === action.payload) {
+        if (product.id === action.payload) {
           let quantity = product.quantity - 1;
 
           if (quantity <= 1) {

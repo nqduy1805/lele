@@ -4,14 +4,8 @@ import Image from 'next/image';
 import {  formatCurrency } from '@/lib/utils';
 import { removeCart,changeItem } from "@/lib/redux/slice/cartSlice";
 import { useAppDispatch,  } from "@/lib/redux/hooks";
+import { Cart } from "@/lib/redux/interface";
 
-interface Cart {
-    name: string;
-    image_url:string;
-    quantity:number;
-    price:number;
-    id:string;
-}
 export default function page({
     cart,
   }: {
@@ -35,19 +29,19 @@ export default function page({
                 <h3 className="text-[24px] text-caribbean-blue font-normal leading-[110%] my-2.5">{cart.name}</h3>
                 <p className="text-onyx-gray font-[400] leading-[120%]">{formatCurrency(cart.price)}</p>
                 <p onClick={() => {
-                        // dispatch(removeCart(cart._id));
+                        dispatch(removeCart(cart.id));
                       }} className="cursor-pointer text-[#b2b2b2] text-[.8em] font-[300]">remove product</p>
             </div>
             <input
                 id="amount"
                 name="amount"
                 type="number"
-                defaultValue={cart.quantity}
+                value={cart.quantity}
                 onChange={(e) => {
                   if(Number(e.target.value)<=0){
                     e.target.value='1';
                   }
-                    // dispatch(changeItem({id:cart._id,quantity:e.target.value}));
+                    dispatch(changeItem({id:cart.id,quantity:e.target.value}));
                   }}
                 step="1"
                 min={1}

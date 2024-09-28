@@ -63,5 +63,7 @@ const instance = axios.create({
   export const httpPost = req.post
   export const httpPut = req.put
   export const httpDel = req.delete
+  export const httpPatch = req.patch
+
   
 

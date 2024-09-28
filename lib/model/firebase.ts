@@ -4,7 +4,8 @@ import {
   GoogleAuthProvider,
   User,
   getAuth,
-  signInWithPopup
+  signInWithPopup,
+  FacebookAuthProvider
 } from 'firebase/auth'
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -23,6 +24,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider()
+
+const facebookProvider = new FacebookAuthProvider()
 
  const signinWithGoogle = async (): Promise<{
   accessToken: string
@@ -46,8 +49,29 @@ const googleProvider = new GoogleAuthProvider()
       })
   })
 }
+ const signinWithFB = async (): Promise<{
+  accessToken: string
+  user: User
+}> => {
+  const auth = getAuth()
+  return new Promise((resolve, reject) => {
+    signInWithPopup(auth, facebookProvider)
+      .then(result => {
+        const credential = FacebookAuthProvider.credentialFromResult(result)
+        resolve({
+          accessToken: credential?.accessToken || '',
+          user: result.user
+        })
+      })
+      .catch(err => {
+        const errorCode = err.code
+        const errorMessage = err.message
+        console.log(errorCode, errorMessage)
+        reject({ errorCode, errorMessage })
+      })
+  })
+}
 
-
-export { auth,signinWithGoogle };
+export { auth,signinWithGoogle,signinWithFB };
 
 

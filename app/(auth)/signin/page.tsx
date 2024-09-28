@@ -6,7 +6,7 @@ export default  function Page() {
     <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[0] gap-y-[0]  lg:grid-cols-2">
       <div className="h-screen flex items-center justify-center">
         <div className="flex-none basis-[58%] lg:max-w-[58]">
-            <h3 className="text-[2rem] font-[500] leading-[1.2] mb-[1rem]">Đăng nhập <strong>Cô Màu sea food</strong></h3>
+            <h3 className="text-[2rem] font-[500] leading-[1.2] mb-[1rem]">Đăng nhập </h3>
             <Form/>
             </div>
         </div>

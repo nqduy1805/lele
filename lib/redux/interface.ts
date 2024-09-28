@@ -46,17 +46,15 @@ export interface IAllProducts {
   totalProducts: number;
   products: IProduct[];
 }
-
 export interface Cart {
-  _id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  img: string;
-  user_id: string;
-  product_id: string;
+  name: string;
+  image_url:string;
+  quantity:number;
+  price:number;
+  id:string;
+  user_id:string;
+  product_id:string;
 }
-
 export interface IUser {
   _id: string;
   name: string;

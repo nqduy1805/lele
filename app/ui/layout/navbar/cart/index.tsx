@@ -5,19 +5,20 @@ import Cart  from '@/app/ui/layout/navbar/cart/cart';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import {checkAuthen} from '@/lib/helper/checkAuthen';
-import {getCarts} from '@/services/cart';
+import {getCartsDetail} from '@/services/cart';
 
 export default function Page() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
 
   const loadCarts = async () => {
-    const res = await getCarts();
+    const res = await getCartsDetail();
     const {status ,carts }= res.data;
     if(status==200 && carts){
       dispatch(addAllToCart(carts));
     }
   };
+
   const authen = checkAuthen();
   useEffect(() => {
     if(authen){

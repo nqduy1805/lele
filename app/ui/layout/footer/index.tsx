@@ -46,10 +46,10 @@ export default function Footer() {
                 className="text-left text-[5rem] font-bold leading-[100%] text-light-onyx-gray"
                 href="/a/a"
             >
-            Cô Màu
+            CÔ MÀU
             </Link>
             <div className="text-[1.25rem] font-light">
-            Sea food Phú Yên
+            SEAFOOD PHU YEN
             </div>
             <div className="flex justify-center items-start pt-5 pb-0 ">
                 {linkSocial.map((link) => {
@@ -106,7 +106,7 @@ export default function Footer() {
                 className="text-mango-yellow hover:text-[#dfe6b3]"
                 href="/"
             >
-                Cô Màu
+                CÔ MÀU
             </Link>
             </p>
             <p className="self-start justify-self-center">Copyright 2024 by Cô Màu</p>

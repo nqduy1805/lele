@@ -18,6 +18,35 @@ export const POST = handler(async (request: requestCustom) =>{
     return NextResponse.json({ error: 'Thêm sản phẩm không thành công' }, { status: 500 });
   }
 });
+export const PATCH = handler(async (request: requestCustom) =>{
+  try {
+    const data = await request.json();
+    const {id, quantity} = data;
+    const {id:user_id} = request.authen;
+    const result = await sql.query(
+        'UPDATE carts SET quantity=$1 WHERE id=$2 and user_id=$3 ',
+        [quantity,id,user_id]
+    );
+
+    return NextResponse.json( { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Thêm sản phẩm không thành công' }, { status: 500 });
+  }
+});
+export const DELETE = handler(async (request: requestCustom) =>{
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id') as string;
+    const {id:user_id} = request.authen;
+    const result = await sql.query(
+        'DELETE FROM carts WHERE id = $1 and user_id=$2  ',
+        [id,user_id]
+    );
+    return NextResponse.json( { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Thêm sản phẩm không thành công' }, { status: 500 });
+  }
+});
 export const GET = handler(async (request: requestCustom) =>{
   try {
     const {id:user_id} = request.authen;
@@ -59,7 +88,7 @@ async function getCarts(user_id:string){
 }
 async function getCartsDetail(user_id:string){
   const data =  await sql.query(
-        ' SELECT c.quantity,p.name,p.price,p.image_url FROM carts c inner join products p on c.product_id = p.id WHERE user_id = $1',
+        ' SELECT c.id,c.quantity,p.name,p.price,p.image_url FROM carts c inner join products p on c.product_id = p.id WHERE user_id = $1',
         [user_id]
     );
   return  { status: 200,carts:data.rows };
