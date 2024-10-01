@@ -10,8 +10,8 @@ const middleware = async (request: requestCustom) => {
         const authorization = request.headers.get('authorization') as string;
         const validToken = extractToken(authorization);
         if (validToken) {
-          const { id, email, name } = validToken as JWTPayload;
-          request.authen = { id, email, name }; 
+          const { id, username, name } = validToken as JWTPayload;
+          request.authen = { id, username, name }; 
           return true;
         }
       } catch (err) {
