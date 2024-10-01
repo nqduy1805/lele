@@ -20,6 +20,7 @@ export default async function page({
                 width={600}
                 height={600} 
                 className="object-cover max-h-[80vh] rounded-[15px] static md:sticky top-[75px] "
+                loading="lazy"
             />
             <div>
                 <h1 className="text-[6rem] mb-[10px] text-left text-onyx-gray leading-[100%] font-[700]">{item.name}</h1>

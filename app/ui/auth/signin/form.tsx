@@ -13,7 +13,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export interface ISignin {
-  email: string
+  username: string
   password: string
   provider: 'GOOGLE' | 'EMAIL_PASSWORD'
 }
@@ -27,7 +27,7 @@ export default function page() {
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         submitHandler({
-          email:username,
+          username:username,
           password:password,
           provider: 'EMAIL_PASSWORD'
 
@@ -40,7 +40,7 @@ export default function page() {
           const idToken = await user.getIdToken()
           console.log(idToken);
           submitHandler({
-            email: user.email || '',
+            username: user.email || '',
             password: idToken,
             provider: 'GOOGLE'
           })
@@ -57,7 +57,7 @@ export default function page() {
           console.log(user);
 
           submitHandler({
-            email: user.email || '',
+            username: user.email || '',
             password: idToken,
             provider: 'GOOGLE'
           })
@@ -120,24 +120,24 @@ export default function page() {
                 </>
             )}
               <div className="mb-[1rem]">
-                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Username</label>
-                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-   block w-full px-3 py-1.5   leading-6 " maxLength={5000}  value={username} onChange={(e) => setUsername(e.target.value)} name="email" data-name="Email" placeholder="Your-email@gmail.com" type="text"  required />
+                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Tên đăng nhập</label>
+                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-   block w-full px-3 py-1.5   leading-6 " maxLength={5000}  value={username} onChange={(e) => setUsername(e.target.value)} name="username" data-name="username" placeholder="Tên đăng nhập" type="text"  required />
               </div>
               <div className="mb-[1rem]">
-                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Password</label>
+                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Mật khẩu</label>
                 <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5 text-base  leading-6 " maxLength={5000}  value={password} onChange={(e) => setPassword(e.target.value)} name="password" data-name="password" placeholder="Your Password" type="password"  required />
               </div>
               <div className=" mb-[1rem] ">
                 <label className="flex justify-between">
                   <div>
                     {/* <input className="text-[#fb771a] rounded-[4px] mr-[8px]" maxLength={5000}  name="isRemember"  type="checkbox" checked /> */}
-                    <span className="text-[#888] text-[14px] font-[400]">Remember me</span>
+                    <span className="text-[#888] text-[14px] font-[400]">Ghi nhớ</span>
                   </div>
-                  <span className="text-[#888] text-[14px] font-[400]">Forgot Password</span>
+                  <span className="text-[#888] text-[14px] font-[400]">Quên mật khẩu</span>
                 </label>
               </div>
                 <button className="rounded-[0.25rem] border border-transparent w-full h-[44px] px-[30px] cursor-pointer text-white bg-[#fb771a] border-[#fb771a] hover:text-white hover:bg-[#eb6304] hover:border-[#de5e04]" >
-                    Log in 
+                    Đăng nhập 
                 </button>
           </form>
               <div className="relative mt-2 pb-1 mt-[20px] mb-[10px]">
@@ -157,6 +157,8 @@ export default function page() {
                 width={20} 
                 height={20}
                 className="w-[20px] h-[20px] mr-[8px]" 
+                loading="lazy"
+
                 />
                   Facebook
                   </button>
@@ -170,6 +172,7 @@ export default function page() {
                 width={20} 
                 height={20}
                 className="w-[20px] h-[20px] mr-[8px]" 
+                loading="lazy"
                 />Google
                 </button>
               </div>

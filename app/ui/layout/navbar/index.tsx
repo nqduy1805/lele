@@ -24,7 +24,7 @@ export default function Navbar() {
         <Logo screen="sm"/>
         <Card/>
     </div>
-    {isMenuVisible && <Menu2 />}
+    {isMenuVisible && <Menu2 toggleMenu={toggleMenu}/>}
   </div>
 </div>
   );

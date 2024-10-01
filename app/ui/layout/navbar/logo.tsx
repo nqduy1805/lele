@@ -16,6 +16,7 @@ export default function Logo({ screen }: { screen: string }) {
               width={50}
               height={50}
               alt="logo"
+              loading="lazy"
             />
           </a>
     );

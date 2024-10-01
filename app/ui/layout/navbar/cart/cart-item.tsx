@@ -3,12 +3,12 @@ import Image from 'next/image';
 import {  formatCurrency } from '@/lib/utils';
 import { removeCart,changeItem } from "@/lib/redux/slice/cartSlice";
 import { useAppDispatch,  } from "@/lib/redux/hooks";
-import { Cart } from "@/lib/redux/interface";
+import {cart} from '@/lib/definitions/order';
 
 export default function page({
     cart,
   }: {
-    cart: Cart;
+    cart: cart;
   }) {
     const dispatch = useAppDispatch();
 
@@ -21,6 +21,7 @@ export default function page({
                 width={80} 
                 height={80}
                 className="w-full h-auto rounded-[5px]" 
+                loading="lazy"
             />
             </div>
             
@@ -29,7 +30,7 @@ export default function page({
                 <p className="text-onyx-gray font-[400] leading-[120%]">{formatCurrency(cart.price)}</p>
                 <p onClick={() => {
                         dispatch(removeCart(cart.id));
-                      }} className="cursor-pointer text-[#b2b2b2] text-[.8em] font-[300]">remove product</p>
+                      }} className="cursor-pointer text-[#b2b2b2] text-[.8em] font-[300]">Xóa sản phẩm</p>
             </div>
             <input
                 id="amount"

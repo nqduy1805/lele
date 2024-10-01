@@ -3,7 +3,7 @@ import styles from './style.module.css';
 
 export default function page() {
     return (
-                <div className={`${styles.infor} sticky  top-[3vw]`}>
+                <div className={`${styles.infor} md:sticky  top-[3vw] w-full`}>
                     <form className="bg-beige border border-dark-beige rounded-lg mb-5 w-full">
                         <div className="bg-[#fff0] border-none border  border-[#e6e6e6] flex justify-between items-baseline p-[4px] px-[20px]">
                             <h3 className="text-caribbean-blue mt-5 mb-2.5 text-[1.5rem] font-normal leading-[110%]">

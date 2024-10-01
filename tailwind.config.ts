@@ -30,7 +30,8 @@ const config: Config = {
         'white': 'white',
         'caribbean-blue': '#2b7484',
         'grey': '#b2b2b2',
-        'light-green': '#dfe6b3'
+        'light-green-g': '#dfe6b3',
+        'light-green': '#b3d6e6e3'
       },
       lineHeight: {
         '150': '1.5',

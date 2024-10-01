@@ -31,6 +31,7 @@ export default async function productsTable({
                         width={28}
                         height={28}
                         alt={`${invoice.name}'s profile picture`}
+                        loading="lazy"
                       />
                       <p>{invoice.name}</p>
                     </div>
@@ -90,6 +91,7 @@ export default async function productsTable({
                         width={28}
                         height={28}
                         alt={`${invoice.name}'s profile picture`}
+                        loading="lazy"
                       />
                       <p>{invoice.name}</p>
                     </div>

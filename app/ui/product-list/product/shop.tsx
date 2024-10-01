@@ -6,7 +6,12 @@ import {  formatCurrency } from '@/lib/utils';
 import { addToCart } from "@/lib/redux/slice/cartSlice";
 import { useDispatch } from 'react-redux';
 import { ProductsTable } from '@/lib/definitions';
-
+import { addProductToCart } from '@/services/cart';
+import {checkAuthen} from '@/lib/helper/checkAuthen';
+import { setCartAffterLogin } from '@/lib/model/local-cache'
+import {  useRouter } from 'next/navigation';
+import { clearAllGoalieToken } from '@/lib/model/save-jwt'
+import { toast } from 'react-toastify';
 export default function Top({
     product,
   }: {
@@ -14,16 +19,20 @@ export default function Top({
   }) {
 
     const dispatch = useDispatch();
-    const addCartHandle = () => {
-      dispatch(
-        addToCart({
-          _id: product.id,
-          title: product.name,
-          quantity: 1,
-          price: product.price,
-          img: product.image_url,
-        })
-      );
+    const { push } = useRouter()
+
+     const addCartHandle =async () => {
+        const cart = { product_id:product.id,quantity:1}
+        const authen = checkAuthen();
+        if(authen){
+          const result = await addProductToCart(cart);
+          dispatch(addToCart(cart));
+          toast.success("Thêm sản phẩm thành công!");
+        }else{
+          setCartAffterLogin(JSON.stringify(cart));
+          clearAllGoalieToken();
+          push('/signin');
+        }
     };
 
     let hidden_sale = product.price_sale ? false : true; 
@@ -37,6 +46,7 @@ export default function Top({
             width={700} // Chiều rộng gốc của hình ảnh
             height={500} // Chiều cao gốc của hình ảnh
             className="w-full h-auto" // Tailwind CSS cho width 100% và height auto
+            loading="lazy"
             />
         </div>
         <div className="py-[10px] px-[15px] text-center">

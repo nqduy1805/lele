@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import { Cart } from "@/lib/redux/interface";
+import {cart} from '@/lib/definitions/order';
 import {  formatCurrency } from '@/lib/utils';
 
 export default function page({
     cart,
   }: {
-    cart: Cart;
+    cart: cart;
   }) {
-  
     return (
         <div className="flex mb-[20px]">
             <Image
@@ -16,10 +15,10 @@ export default function page({
                 width={80} 
                 height={80}
                 className="w-[80px] h-[80px ] rounded-[5px]" 
+                loading="lazy"
             />
-
             <div className="flex-grow ml-4 mr-4">
-                <p className="text-[1.25rem] font-medium">{cart.name}</p>
+                <p className="text-[1rem] font-medium">{cart.name}</p>
                 <p  className="">Số lượng: {cart.quantity}</p>
             </div>
             <div>

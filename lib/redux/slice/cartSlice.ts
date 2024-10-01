@@ -1,9 +1,9 @@
-import { Cart } from "@/lib/redux/interface";
+import {cart} from '@/lib/definitions/order';
 import { createSlice } from "@reduxjs/toolkit";
 import {deleteCart,updateCart} from '@/services/cart';
 
 interface InitialState {
-  cart: Cart[];
+  cart: cart[];
   totalPrice: number;
   totalQuantity: number;
   editCartMode: boolean;
@@ -38,8 +38,8 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      let { user_id, product_id,quantity } = action.payload;
-      let existingItem = state.cart.find((item) => item.user_id === user_id && item.product_id==product_id);
+      let {  product_id,quantity } = action.payload;
+      let existingItem = state.cart.find((item) =>  item.product_id==product_id);
 
       existingItem
         ? (existingItem.quantity += quantity)

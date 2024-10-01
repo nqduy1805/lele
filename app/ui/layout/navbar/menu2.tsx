@@ -15,10 +15,10 @@ const linkSocial = [
   ];
   
 
-export default function Menu2() {
+export default function Menu2({toggleMenu}:{toggleMenu: () => void}) {
   const pathname = usePathname();
     return (
-        <div className=" w-full absolute top-full left-0 right-0 overflow-hidden">
+        <div onClick={toggleMenu} className="h-[7031.31px] w-full absolute top-full left-0 right-0 overflow-hidden">
             <nav className="bg-light-beige border-b border-onyx-gray rounded-bl-[10px] rounded-br-[10px] overflow-visible" >
                 {navLinks.map((link) => {
                 return (

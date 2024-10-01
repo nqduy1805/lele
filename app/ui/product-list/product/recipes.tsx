@@ -18,6 +18,7 @@ export default async function Home({
                 width={700}
                 height={500} 
                 className="w-full h-auto"
+                loading="lazy"
             />
             </div>
             <div className="py-[10px] px-[15px] text-center ">

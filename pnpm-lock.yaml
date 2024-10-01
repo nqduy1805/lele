@@ -56,6 +56,9 @@ importers:
       react-redux:
         specifier: ^9.1.2
         version: 9.1.2(@types/react@18.3.3)(react@19.0.0-rc-f38c22b244-20240704)(redux@5.0.1)
+      react-toastify:
+        specifier: ^10.0.5
+        version: 10.0.5(react-dom@19.0.0-rc-f38c22b244-20240704(react@19.0.0-rc-f38c22b244-20240704))(react@19.0.0-rc-f38c22b244-20240704)
       tailwindcss:
         specifier: 3.4.4
         version: 3.4.4
@@ -1472,6 +1475,12 @@ packages:
         optional: true
       redux:
         optional: true
+
+  react-toastify@10.0.5:
+    resolution: {integrity: sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   react@19.0.0-rc-f38c22b244-20240704:
     resolution: {integrity: sha512-OP8O6Oc1rdR9IdIKJRKaL1PYd4eGkn6f88VqiygWyyG4P4RmPPix5pp7MatqSt9TnBOcVT+lBMGoVxRgUFeudQ==}
@@ -3369,6 +3378,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
       redux: 5.0.1
+
+  react-toastify@10.0.5(react-dom@19.0.0-rc-f38c22b244-20240704(react@19.0.0-rc-f38c22b244-20240704))(react@19.0.0-rc-f38c22b244-20240704):
+    dependencies:
+      clsx: 2.1.1
+      react: 19.0.0-rc-f38c22b244-20240704
+      react-dom: 19.0.0-rc-f38c22b244-20240704(react@19.0.0-rc-f38c22b244-20240704)
 
   react@19.0.0-rc-f38c22b244-20240704: {}
 

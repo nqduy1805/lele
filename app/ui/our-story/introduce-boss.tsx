@@ -16,6 +16,7 @@ export default function page() {
                             width={402} 
                             height={402}
                             className="w-full h-auto"
+                            loading="lazy"
                         />
                         <div className="absolute bg-light-green z-[-1] rounded-t-[15px] h-[70%]  top-auto right-0 bottom-0 left-0"></div>
                     </div>
@@ -32,6 +33,7 @@ export default function page() {
                             width={402} 
                             height={402}
                             className="w-full h-auto"
+                            loading="lazy"
                         />
                         <div className="absolute bg-dark-beige z-[-1] rounded-t-[15px] h-[70%]  top-auto right-0 bottom-0 left-0"></div>
                     </div>

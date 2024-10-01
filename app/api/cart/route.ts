@@ -88,7 +88,7 @@ async function getCarts(user_id:string){
 }
 async function getCartsDetail(user_id:string){
   const data =  await sql.query(
-        ' SELECT c.id,c.quantity,p.name,p.price,p.image_url FROM carts c inner join products p on c.product_id = p.id WHERE user_id = $1',
+        ' SELECT c.id,c.quantity,c.product_id,p.name,p.price,p.image_url FROM carts c inner join products p on c.product_id = p.id WHERE user_id = $1',
         [user_id]
     );
   return  { status: 200,carts:data.rows };

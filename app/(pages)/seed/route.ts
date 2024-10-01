@@ -72,16 +72,35 @@ async function seedCategoryRecipe() {
     );
   `;
 }
+async function seedOrders() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS orders (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      user_id uuid NOT NULL,
+      order_details JSONB NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status VARCHAR(255) DEFAULT 'pending',
+      total_price INT,
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+  `;
+}
+
+
 // async function seedUsers() {
 //   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 //   await client.sql`
 //     CREATE TABLE IF NOT EXISTS users (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 //       name VARCHAR(255) NOT NULL,
-//       email TEXT NOT NULL UNIQUE,
-//       password TEXT NOT NULL
+      // email VARCHAR(255),
+      // username VARCHAR(255) NOT NULL UNIQUE,
+      // password VARCHAR(255) NOT NULL
 //     );
 //   `;
+
+
 
   // const insertedUsers = await Promise.all(
   //   users.map(async (user) => {
@@ -169,75 +188,77 @@ async function seedCategoryRecipe() {
 //   return insertedRevenue;
 // }
 // 
-// export async function GET() {
-//   // return Response.json({
-//   //   message:
-//   //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
-//   // });
-//   try {
-
-//     await client.sql`BEGIN`;
-//     // await seedCategory();
-//     // await seedProducts();
-//     // await seedRecipes();
-//     // await seedProductRecipe();
-//     await seedCategoryRecipe();
-
-    
-//     await client.sql`COMMIT`;
-//     return Response.json({ message: 'Database seeded successfully' });
-//   } catch (error) {
-//     await client.sql`ROLLBACK`;
-//     return Response.json({ error }, { status: 500 });
-//   }
-// }
 export async function GET() {
-  
+  // return Response.json({
+  //   message:
+  //     'Uncomment this file and remove this line. You can delete this file when you are finished.',
+  // });
   try {
-    type pr = {
-      id: string;
-    };
-    
+
     await client.sql`BEGIN`;
-      // const data = await client.sql<pr>`
-      //   SELECT id
-      //   FROM products
-      // `;
-      // const data2 = await client.sql<pr>`
-      //   select id from recipes where prep_time = 5 limit 1
-      // `;
-      // await Promise.all(
-      //   data.rows.map(async (item) => {
-      //     return client.sql`
-      //       INSERT INTO product_recipe (product_id, recipe_id)
-      //       VALUES (${item.id}, ${data2.rows[0].id})
-      //       ON CONFLICT (id) DO NOTHING;
-      //     `;
-      //   }),
-      // );
+    // await seedCategory();
+    // await seedProducts();
+    // await seedRecipes();
+    // await seedProductRecipe();
+    // await seedCategoryRecipe();
+    await seedOrders();
 
 
-      const categorys = [
-        { name: 'Nước mắm',tag:'nuoc-mam'},
-        { name: 'Kho',tag:'kho'},
-        { name: 'Canh',tag:'Canh'},
-        { name: 'Rim',tag:'rim'},
-        ];
-        await Promise.all(
-        categorys.map(async (user) => {
-        return client.sql`
-          INSERT INTO category_recipe (name, tag)
-          VALUES (${user.name}, ${user.tag})
-        `;
-        }),
-        );
-
-   
+    
     await client.sql`COMMIT`;
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     await client.sql`ROLLBACK`;
     return Response.json({ error }, { status: 500 });
   }
-
 }
+// export async function GET() {
+  
+//   try {
+//     type pr = {
+//       id: string;
+//     };
+    
+//     await client.sql`BEGIN`;
+//       // const data = await client.sql<pr>`
+//       //   SELECT id
+//       //   FROM products
+//       // `;
+//       // const data2 = await client.sql<pr>`
+//       //   select id from recipes where prep_time = 5 limit 1
+//       // `;
+//       // await Promise.all(
+//       //   data.rows.map(async (item) => {
+//       //     return client.sql`
+//       //       INSERT INTO product_recipe (product_id, recipe_id)
+//       //       VALUES (${item.id}, ${data2.rows[0].id})
+//       //       ON CONFLICT (id) DO NOTHING;
+//       //     `;
+//       //   }),
+//       // );
+
+
+//       const categorys = [
+//         { name: 'Nước mắm',tag:'nuoc-mam'},
+//         { name: 'Kho',tag:'kho'},
+//         { name: 'Canh',tag:'Canh'},
+//         { name: 'Rim',tag:'rim'},
+//         ];
+//         await Promise.all(
+//         categorys.map(async (user) => {
+//         return client.sql`
+//           INSERT INTO category_recipe (name, tag)
+//           VALUES (${user.name}, ${user.tag})
+//         `;
+//         }),
+//         );
+
+   
+//     await client.sql`COMMIT`;
+//     return Response.json({ message: 'Database seeded successfully' });
+//   } catch (error) {
+//     await client.sql`ROLLBACK`;
+//     return Response.json({ error }, { status: 500 });
+//   }
+
+// }

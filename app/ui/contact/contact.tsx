@@ -19,7 +19,7 @@ export default function page() {
     return (
         <div className="border border-dark-beige rounded-[10px] p-[3vw]" >
             <div>
-                <h3 className="text-caribbean-blue font-[400] text-[1.5rem] leading-[110%] mt-[20px] mb-[10px]">contact</h3>
+                <h3 className="text-caribbean-blue font-[400] text-[1.5rem] leading-[110%] mt-[20px] mb-[10px]">Liên hệ</h3>
                 <div className="grid auto-cols-fr grid-rows-[auto] gap-x-[15px] gap-y-[0] grid-cols-2 ">
                 {linkSocial.map((link,idx) => {
                     return (

@@ -6,7 +6,15 @@ export type product = {
     price:number;
   };
 
-  export type cart = {
+  export type cartAdd = {
     product_id:string
     quantity:number;
+  };
+  export type cart = {
+    id:string;
+    quantity:number;
+    product_id:string;
+    name:string;
+    price:number;
+    image_url:string;
   };

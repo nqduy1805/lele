@@ -2,7 +2,7 @@ import { generateRefreshToken, generateToken } from '@/lib/model/jwt'
 
 interface JwtEncodeData {
   id: string
-  email: string
+  username: string
   name: string
 }
 

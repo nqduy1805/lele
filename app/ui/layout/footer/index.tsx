@@ -43,7 +43,7 @@ export default function Footer() {
             />
             </div>
             <Link
-                className="text-left text-[5rem] font-bold leading-[100%] text-light-onyx-gray"
+                className="text-left text-[2rem] md:text-[5rem] font-bold leading-[100%] text-light-onyx-gray"
                 href="/a/a"
             >
             CÔ MÀU
@@ -99,9 +99,9 @@ export default function Footer() {
         </div>
     </div>
     <div className="bg-[#414040] p-[1vw] px-[3vw]">
-        <div className="grid grid-rows-[auto] grid-cols-3 items-end text-light-beige">
-            <p className="self-start justify-self-start">
-                <span>Created by </span>
+        <div className="grid grid-rows-[auto] grid-cols-1 gap-y-[16px] md:grid-cols-3  items-end text-light-beige">
+            <p className="self-start justify-self-center md:justify-self-start">
+                <span>Được tạo bởi </span>
             <Link 
                 className="text-mango-yellow hover:text-[#dfe6b3]"
                 href="/"
@@ -109,8 +109,8 @@ export default function Footer() {
                 CÔ MÀU
             </Link>
             </p>
-            <p className="self-start justify-self-center">Copyright 2024 by Cô Màu</p>
-            <p className="self-start justify-self-end">   Powered by Cô Màu       </p>
+            <p className="self-start justify-self-center">Bản quyền thuộc về Cô Màu</p>
+            <p className="self-start justify-self-center md:justify-self-end ">   Powered by Cô Màu       </p>
         </div>
     </div>
     </div>

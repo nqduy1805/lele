@@ -2,51 +2,54 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {ExclamationCircleIcon,} from '@heroicons/react/24/outline';
-import { signin } from '@/services/auth';
+import { signup } from '@/services/auth';
 import {checkProtectPage} from '@/lib/helper/checkAuthen';
 import { getRecentVisit,getCartAffterLogin } from '@/lib/model/local-cache'
 import { setFixLoading }  from '@/components/Loading'
 import {  saveGoalieToken,saveGoalieRefreshToken} from '@/lib/model/save-jwt'
-import { addProductToCart } from '@/services/cart';
 
 
 export default function page() {
       checkProtectPage();
       const { push } = useRouter()
+      const [name, setName] = useState('');
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');
+      const [confirmPassword, setConfirmPassword] = useState('');
+
+      
       const [error, setError] = useState('');
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const user =  {
-          email:username,
+          name:name,
+          username:username,
           password:password,
-          provider:'google'
+          confirmPassword:confirmPassword
         };
         
-        signin(user).then(res => {
+        if (!user.username || !user.name || !user.password) {
+          setError('Vui lòng điền đầy đủ thông tin.');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          setError('Mật khẩu và xác nhận mật khẩu không khớp.');
+          return;
+        }
+        
+        
+        signup(user).then(res => {
           try {
             const {data} = res;
 
             if(data.status==200){
-              const {headers} = res;
-              const authorization = headers.authorization;
-              if (authorization ) {
-                saveGoalieToken(authorization)
-                saveGoalieRefreshToken(headers.refreshtoken);
-              }
-              const recentVisit = getRecentVisit('1');
+              
               setFixLoading(true, {
                 title: 'Redirecting to main screen ...'
               })
-              const cart = getCartAffterLogin();
-              addProductToCart(cart);
-              if (recentVisit) {
-                push(recentVisit)
-              } else {
-                push('/home')
-              }
+              push('/signin')
               setTimeout(() => {
                 setFixLoading(false)
               }, 1000)
@@ -59,7 +62,8 @@ export default function page() {
           }
         })
         .catch(err => {
-  
+          setError('Có lỗi xảy ra xin vui lòng thử lại.');
+
         })
         .finally(() => {
           // setLoading(false)
@@ -76,18 +80,21 @@ export default function page() {
                 </>
             )}
               <div className="mb-[1rem]">
-                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Tên đăng nhập</label>
-                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5   leading-6 " maxLength={5000}  value={username} onChange={(e) => setUsername(e.target.value)} name="email" data-name="Email" placeholder="Your-email@gmail.com" type="text"  required />
+                <label className=" text-[1rem] mb-[0.5rem] inline-block font-[400]">Tên</label>
+                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5   leading-6 " maxLength={5000}  value={name} onChange={(e) => setName(e.target.value)} name="name" data-name="name" placeholder="Tên" type="text"  required />
               </div>
               <div className="mb-[1rem]">
-                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Mật khẩu</label>
-                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5 text-base  leading-6 " maxLength={5000}  value={password} onChange={(e) => setPassword(e.target.value)} name="password" data-name="password" placeholder="Your Password" type="password"  required />
+                <label className=" text-[1rem] mb-[0.5rem] inline-block font-[400]">Tên đăng nhập</label>
+                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5   leading-6 " maxLength={5000}  value={username} onChange={(e) => setUsername(e.target.value)} name="username" data-name="username" placeholder="Tên đăng nhập" type="text"  required />
               </div>
               <div className="mb-[1rem]">
-                <label className=" text-[1rem] mb-[1rem] inline-block font-[400]">Xác nhận mật khẩu</label>
-                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5 text-base  leading-6 " maxLength={5000}  value={password} onChange={(e) => setPassword(e.target.value)} name="password" data-name="password" placeholder="Your Password" type="password"  required />
+                <label className=" text-[1rem] mb-[0.5rem] inline-block font-[400]">Mật khẩu</label>
+                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5 text-base  leading-6 " maxLength={5000}  value={password} onChange={(e) => setPassword(e.target.value)} name="password" data-name="password" placeholder="Mật khẩu" type="password"  required />
               </div>
-              
+              <div className="mb-[1rem]">
+                <label className=" text-[1rem] mb-[0.5rem] inline-block font-[400]">Xác nhận mật khẩu</label>
+                <input className="focus:outline-none focus:ring-0  text-[1rem]  border-none shadow-sm rounded h-[54px] bg-white block w-full px-3 py-1.5 text-base  leading-6 " maxLength={5000}  value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} name="confirmPassword" data-name="confirmPassword" placeholder="Mật khẩu xác nhận" type="password"  required />
+              </div>
                 <button className="rounded-[0.25rem] border border-transparent w-full h-[54px] px-[30px] cursor-pointer text-white bg-[#fb771a] border-[#fb771a] hover:text-white hover:bg-[#eb6304] hover:border-[#de5e04]" >
                     Đăng ký 
                 </button>
