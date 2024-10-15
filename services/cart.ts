@@ -1,5 +1,5 @@
 import { httpDel, httpGet, httpPost, httpPut,httpPatch } from './_req'
-import {cart,cartAdd} from '@/lib/definitions/order';
+import {cart,cartAdd,orderCreate} from '@/lib/definitions/order';
 
 export const addProductToCart = (cart:cartAdd) => {
   return httpPost(`/api/cart`,cart)
@@ -19,14 +19,19 @@ export const getCartsDetail = () => {
     params: {inter:"getCartsDetail"}
   })
 }
+export const getCartUserInfor = () => {
+  return httpGet(`/api/cart`, {
+    params: {inter:"getCartUserInfor"}
+  })
+}
 export const updateCart = (id:string,quantity:number) => {
   return httpPatch(`/api/cart`, {id,quantity})
 }
 export const deleteCart = (id:string) => {
   return httpDel(`/api/cart`,{params: {id} } )
 }
-export const checkout = (cart:cart[],totalPrice:number) => {
-  return httpPost(`/api/order`,{cart,totalPrice})
+export const checkout = (cart:cart[],orderCreate:orderCreate) => {
+  return httpPost(`/api/order`,{cart,orderCreate})
 }
 
 

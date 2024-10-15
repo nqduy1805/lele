@@ -1,0 +1,36 @@
+.userItem::after{
+    content:"";
+    position: absolute;
+    right: 30px;
+    top:-18px;
+    border-width: 10px 14px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+  }
+  .userItem{
+    box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+  .user::after{
+    content:"";
+    position: absolute;
+    right: 1px;
+    top:20px;
+    height: 10px;
+    width: 100%;
+  }
+  .user:hover .userItem{
+    display: flex;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .userItem::after{
+      content:"";
+      position: absolute;
+      right: 0px;
+      top: -12px;
+      border-width: 8px 12px;
+      border-style: solid;
+      border-color: transparent transparent white transparent;
+    }
+  }

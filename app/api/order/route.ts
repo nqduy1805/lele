@@ -6,11 +6,11 @@ import {cart} from '@/lib/definitions/order';
   
 export const POST = handler(async (request: requestCustom) =>{
   try {
-    const {cart:cart,totalPrice} = await request.json();
+    const {cart:cart,orderCreate:{totalPrice,phone,address}} = await request.json();
     const {id:user_id} = request.authen;
     const result = await sql.query(
-      'INSERT INTO orders (user_id, order_details,total_price) VALUES ($1, $2, $3)',
-      [user_id, JSON.stringify(cart),totalPrice]
+      'INSERT INTO orders (user_id, order_details,total_price,phone,address) VALUES ($1, $2, $3,$4,$5)',
+      [user_id, JSON.stringify(cart),totalPrice,phone,address]
   );
     if(result){
       const cart_ids = cart.map((item:cart) => (item.id)) ;
@@ -18,8 +18,6 @@ export const POST = handler(async (request: requestCustom) =>{
       const query = `DELETE FROM carts WHERE id IN (${idPlaceholders})`;
       sql.query(query, cart_ids);
     }    
-    
-   
     return NextResponse.json( { status: 200, msg:"success"  });
   } catch (error) {
     return NextResponse.json({ error: 'Thêm sản phẩm không thành công' }, { status: 500 });

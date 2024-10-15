@@ -1,5 +1,4 @@
 import Order  from '@/app/ui/checkout/order';
-import Infor  from '@/app/ui/checkout/customer-infor';
 
 export default async function Page() {
   return (
@@ -9,10 +8,7 @@ export default async function Page() {
                 <h1 className="font-[700] text-left text-[4rem] md:text-[6rem] leading-[120%] ">Gần xong rồi...</h1>
                 <p className="font-[400]  mt-2.5 mb-5 text-[1.25rem]">Vui lòng nhập một vài thông tin chi tiết để xác nhận đơn hàng của bạn..</p>
             </div>
-            <div className="flex items-start flex-col md:flex-row max-w-[940px] ">
-              <Infor/>
-              <Order/>
-            </div>
+            <Order/>
         </div>
         
     </main>

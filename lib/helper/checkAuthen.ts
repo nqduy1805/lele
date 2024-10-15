@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import {  getGoalieRefreshToken,getGoalieToken} from '@/lib/model/save-jwt'
-export function checkAuthen() {
+export function checkAuthen(): boolean {
     const token = getGoalieToken();
     const refreshToken = getGoalieRefreshToken();
-    return (refreshToken && token);
+    return !!(refreshToken && token);
 }
 import { clearAllGoalieToken } from '@/lib/model/save-jwt'
 export function checkProtectPage() {

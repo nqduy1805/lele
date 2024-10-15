@@ -63,13 +63,17 @@ export const GET = handler(async (request: requestCustom) =>{
       case "getCartsDetail":
         reponse = await getCartsDetail(user_id);
         break;
+      case "getCartUserInfor":
+        reponse = await getCartUserInfor(user_id);
+        break;
+        
       default:
         break;
     }
 
     return NextResponse.json( reponse);
   } catch (error) {
-    return NextResponse.json({ error: 'Thêm sản phẩm thất bại' }, { status: 500 });
+    return NextResponse.json({ error: 'Get thông tin thất bại' }, { status: 500 });
   }
 });
 async function getTotalCarts(user_id:string){
@@ -93,6 +97,18 @@ async function getCartsDetail(user_id:string){
     );
   return  { status: 200,carts:data.rows };
 }
+async function getCartUserInfor(user_id:string){
+  const data =  await sql.query(
+        ' SELECT c.id,c.quantity,c.product_id,p.name,p.price,p.image_url FROM carts c inner join products p on c.product_id = p.id WHERE user_id = $1',
+        [user_id]
+    );
+  const user =  await sql.query(
+    ' SELECT name,avatar from users WHERE id = $1 limit 1',
+    [user_id]
+  );
+  return  { status: 200,carts:data.rows,user:user.rows[0] };
+}
+
 
 
 

@@ -12,7 +12,6 @@ export default function page() {
         push('/signin');
   };
     return (
-    <>
       <div className="flex items-center  cursor-pointer text-mango-yellow">
             <Link
               className="flex items-center p-1 hover:text-mango-yellow hover:text-mango-yellow/70   font-[400]"
@@ -28,9 +27,6 @@ export default function page() {
               Đăng ký
             </Link>
       </div>
-      
-    </>
-
     );
   }
   

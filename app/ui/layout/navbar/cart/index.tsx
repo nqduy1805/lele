@@ -5,18 +5,20 @@ import Cart  from '@/app/ui/layout/navbar/cart/cart';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import {checkAuthen} from '@/lib/helper/checkAuthen';
-import {getCartsDetail} from '@/services/cart';
-import User  from '@/app/ui/layout/navbar/user';
+import {getCartUserInfor} from '@/services/cart';
+import User  from '@/app/ui/layout/navbar/user/index';
+import {setUser} from "@/lib/redux/slice/userSlice";
 
 export default function Page() {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
 
   const loadCarts = async () => {
-    const res = await getCartsDetail();
-    const {status ,carts }= res.data;
+    const res = await getCartUserInfor();
+    const {status ,carts ,user}= res.data;
     if(status==200 && carts){
       dispatch(addAllToCart(carts));
+      dispatch(setUser(user));
     }
   };
 
@@ -39,7 +41,7 @@ export default function Page() {
           </div>
           {isVisible && <Cart onClick={toggleCart} />}
         </div>
-        <User/>
+        <User authen={authen}/>
       </div>
     );
   }

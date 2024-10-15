@@ -32,11 +32,11 @@ async function checkUser(data: userSigin): Promise<JWTPayload |null| undefined> 
           const verifiedUser = await auth.verifyIdToken(password)
           if (verifiedUser) {
             if(!user){
-              const {name,email} =verifiedUser;
+              const {name,email,picture} =verifiedUser;
               const password = '1';
               const newUser = await sql.query(
-                'INSERT INTO users (name,email,username,password) VALUES ($1, $2, $3) ON CONFLICT (id) DO NOTHING RETURNING id',
-                [name, email,username, password]
+                'INSERT INTO users (name,email,username,password,avatar) VALUES ($1, $2, $3,$4,$5) ON CONFLICT (id) DO NOTHING RETURNING id',
+                [name, email,username, password,picture]
               );
               return {name,username:email as string ,id:newUser?.rows?.[0]?.id as string};
             }else{

@@ -16,5 +16,8 @@ const nextConfig = {
         },
       ]
     },
+    images: {
+      domains: ['lh3.googleusercontent.com'], // Thêm domain này
+    },
   };
   export default nextConfig;
